@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* custom shadow for cards */
+.custom-shadow {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), 0 -3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* body */
+.hero-bg {
+    background-image: url('/public/img/background/hexgrid.svg'); 
+    background-repeat: repeat;
+    background-size: 700px; 
+    animation: moveNW 20s linear infinite;
+}
+
+@keyframes moveNW {
+    0% { background-position: 0 0; }            /* start normal */
+    100% { background-position: -200px -200px; } /* move left & up */
+}
+
