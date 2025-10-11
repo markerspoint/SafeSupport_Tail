@@ -15,11 +15,11 @@
     background-image: url('/public/img/background/hexgrid.svg'); 
     background-repeat: repeat;
     background-size: 700px; 
-    animation: moveNW 20s linear infinite;
+    animation: moveNW 10s linear infinite;
 }
 
 @keyframes moveNW {
-    0% { background-position: 0 0; }            /* start normal */
-    100% { background-position: -200px -200px; } /* move left & up */
+    0% { background-position: 0 0; }   
+    100% { background-position: -200px -200px; } 
 }
 

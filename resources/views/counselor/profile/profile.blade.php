@@ -1,4 +1,4 @@
-@extends('layout.master-student')
+@extends('layout.master-counselor')
 @section('title', 'Profile')
 
 @section('body')
@@ -94,7 +94,7 @@
                         </svg>
                     </button>
                 </div>
-                @include('student.profile._edit-profile-form')
+                @include('counselor.profile._edit-profile-form')
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@
 @section('title', 'Appointments')
 
 @section('body')
+
 <div class="min-h-full p-6" x-data="{ openModal: false, selectedAppointment: null, filter: '{{ $filter ?? 'upcoming' }}' }">
     @if (session('success'))
     <div class="bg-green-50 border border-green-200 text-green-600 p-4 rounded-lg mb-6">
@@ -14,6 +15,10 @@
             Book New Appointment
         </a>
     </div>
+
+    {{-- hr line--}}
+    <hr class="w-full border-t border-gray-200 -mt-3 mb-6">
+
     <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
         <div class="flex space-x-2">
             <button @click="filter = 'upcoming'; window.location.href = '{{ route('student.appointments') }}?filter=upcoming'" :class="{ 'bg-teal-100 text-teal-900 font-semibold': filter === 'upcoming', 'text-gray-600 hover:bg-gray-50': filter !== 'upcoming' }" class="px-4 py-2 text-sm rounded-lg border border-gray-200">

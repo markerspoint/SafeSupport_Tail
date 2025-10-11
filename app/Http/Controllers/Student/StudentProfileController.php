@@ -21,7 +21,7 @@ class StudentProfileController extends Controller
      */
     public function edit()
     {
-        return view('student.profile.edit', ['user' => Auth::user()]);
+        return view('student.profile.edit-profile', ['user' => Auth::user()]);
     }
 
     /**

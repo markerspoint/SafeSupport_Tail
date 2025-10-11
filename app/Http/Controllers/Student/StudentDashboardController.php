@@ -9,6 +9,6 @@ class StudentDashboardController extends Controller
 {
     public function index()
     {
-        return view('student.dashboard'); // resources/views/student/dashboard.blade.php
+        return view('student.dashboard'); 
     }
 }

@@ -1,5 +1,5 @@
 @extends('layout.master-counselor')
-@section('title', 'dashboard')
+@section('title', 'appointment')
 
 @section('body')
 

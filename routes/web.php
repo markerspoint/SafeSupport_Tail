@@ -6,6 +6,11 @@ use App\Http\Controllers\AppointmentController;
 
 // student
 use App\Http\Controllers\Student\StudentProfileController;
+use App\Http\Controllers\Student\ResourceController;
+
+// counselor
+use App\Http\Controllers\Counselor\CounselorDashboard;
+use App\Http\Controllers\Counselor\CounselorProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,15 +44,21 @@ Route::middleware('auth')->prefix('student')->group(function () {
     Route::get('/appointments/{appointment}', [AppointmentController::class, 'show'])->name('student.appointments.show');
     Route::delete('/appointments/{appointment}', [AppointmentController::class, 'destroy'])->name('student.appointments.destroy');
     Route::post('/student/appointments/{appointment}/receive', [AppointmentController::class, 'receive'])->name('student.appointments.receive');
-Route::post('/student/appointments/{appointment}/complete', [AppointmentController::class, 'complete'])->name('student.appointments.complete');
+    Route::post('/student/appointments/{appointment}/complete', [AppointmentController::class, 'complete'])->name('student.appointments.complete');
 
+    // profile
     Route::get('/profile', [StudentProfileController::class, 'show'])->name('student.profile');
     Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('student.profile.edit');
-    Route::post('/profile', [StudentProfileController::class, 'update'])->name('student.profile.update');
+    Route::put('/profile', [StudentProfileController::class, 'update'])->name('student.profile.update');
+
+    // Resources Routes
+    Route::get('/resources/videos', [ResourceController::class, 'videos'])->name('student.resources.videos');
+    Route::get('/resources/articles', [ResourceController::class, 'articles'])->name('student.resources.articles');
+    Route::get('/resources/self-help', [ResourceController::class, 'selfHelp'])->name('student.resources.self-help');
 });
 
 Route::middleware('auth')->prefix('counselor')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('counselor.dashboard');
-    })->name('counselor.dashboard');
+    Route::get('/dashboard', [CounselorDashboard::class, 'dashboard'])->name('counselor.dashboard');
+    Route::get('/profile', [CounselorProfileController::class, 'profile'])->name('counselor.profile');
+    Route::put('/profile', [CounselorProfileController::class, 'update'])->name('counselor.profile.update');
 });
