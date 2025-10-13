@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ class Appointment extends Model
     protected $casts = [
         'date' => 'date',
         'time' => 'datetime:H:i',
+        'status' => 'string',
     ];
 
     public function scopeUpcoming($query)
@@ -28,8 +30,19 @@ class Appointment extends Model
         return $this->belongsTo(User::class, 'counselor_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function statusHistory()
     {
         return $this->hasMany(StatusHistory::class);
     }
+
+    public function getAppointmentDateTimeAttribute()
+    {
+        return Carbon::parse($this->getRawOriginal('date') . ' ' . $this->getRawOriginal('time'));
+    }
+
 }

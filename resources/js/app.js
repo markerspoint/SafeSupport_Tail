@@ -1,9 +1,15 @@
 import "./bootstrap";
+// import "../css/app.css";
 
 import Alpine from "alpinejs";
-
 window.Alpine = Alpine;
+
 Alpine.start();
+
+import Chart from "chart.js/auto";
+window.Chart = Chart;
+
+
 
 // Sidebar master layout toggle
 const sidebar = document.getElementById("sidebar");

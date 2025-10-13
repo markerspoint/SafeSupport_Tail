@@ -22,10 +22,10 @@
             <ul class="space-y-2">
                 <li>
                     <a href="{{ route('counselor.dashboard') }}" class="flex items-center px-4 py-2 rounded-md transition
-            {{ request()->routeIs('counselor.dashboard') 
-                ? 'bg-gray-200 text-gray-900 font-semibold' 
-                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('counselor.dashboard') ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900' }}">
+                    {{ request()->routeIs('counselor.dashboard') 
+                        ? 'bg-pine-100 text-pine-900 border-l-4 border-pine-600 font-semibold' 
+                        : 'text-gray-700 hover:bg-pine-100 hover:text-pine-900' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('student.dashboard') ? 'text-pine-900' : 'text-gray-600 hover:text-pine-900' }}">
                             <rect width="7" height="9" x="3" y="3" rx="1" />
                             <rect width="7" height="5" x="14" y="3" rx="1" />
                             <rect width="7" height="9" x="14" y="12" rx="1" />
@@ -37,11 +37,11 @@
 
                 <!-- Appointment -->
                 <li>
-                    <a href="{{ route('counselor.appointment') }}" class="flex items-center px-4 py-2 rounded-md transition
-            {{ request()->routeIs('counselor.appointment') 
-                ? 'bg-gray-200 text-gray-900 font-semibold' 
-                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('counselor.appointments') ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900' }}">
+                    <a href="" class="flex items-center px-4 py-2 rounded-md transition
+                    {{ request()->routeIs('counselor.appointments') 
+                        ? 'bg-pine-100 text-pine-900 border-l-4 border-pine-600 font-semibold' 
+                        : 'text-gray-700 hover:bg-pine-100 hover:text-pine-900' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('student.appointments') ? 'text-pine-900' : 'text-gray-600 hover:text-pine-900' }}">
                             <path d="M16 14v2.2l1.6 1" />
                             <path d="M16 4h2a2 2 0 0 1 2 2v.832" />
                             <path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2" />
@@ -54,27 +54,24 @@
 
                 <!-- Resources with Expandable Sub-items -->
                 <li x-data="{ open: false }">
-                    <button type="button" class="flex items-center w-full px-4 py-2 rounded-md transition
-            {{ request()->routeIs('counselor.resources.*') 
-                ? 'bg-gray-200 text-gray-900 font-semibold' 
-                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}" @click="open = !open">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('counselor.resources.*') ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900' }}">
+                    <button type="button" class="flex items-center w-full px-4 py-2 rounded-md transition text-gray-700 hover:bg-pine-100 hover:text-pine-900 focus:outline-none" @click="open = !open">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-600 hover:text-pine-900">
                             <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
                         </svg>
                         <span class="ml-2 menu-text font-[500]">Resources</span>
-                        <svg class="ml-auto h-5 w-5 {{ request()->routeIs('counselor.resources.*') ? 'text-gray-900' : 'text-gray-600' }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" :class="{ 'rotate-180': open }">
+                        <svg class="ml-auto h-5 w-5 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" :class="{ 'rotate-180': open }">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <ul class="pl-6 space-y-1" x-show="open" x-transition>
                         <li>
-                            <a href="" class="block px-4 py-2 text-sm text-gray-700 rounded-md transition {{ request()->routeIs('counselor.resources.videos') ? 'bg-gray-200 text-gray-900 font-semibold' : 'hover:bg-gray-100 hover:text-gray-900' }}">Videos</a>
+                            <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-pine-100 hover:text-pine-900 rounded-md {{ request()->routeIs('student.resources.videos') ? 'bg-pine-100 text-pine-900' : '' }}">Videos</a>
                         </li>
                         <li>
-                            <a href="" class="block px-4 py-2 text-sm text-gray-700 rounded-md transition {{ request()->routeIs('counselor.resources.articles') ? 'bg-gray-200 text-gray-900 font-semibold' : 'hover:bg-gray-100 hover:text-gray-900' }}">Articles</a>
+                            <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-pine-100 hover:text-pine-900 rounded-md {{ request()->routeIs('student.resources.articles') ? 'bg-pine-100 text-pine-900' : '' }}">Articles</a>
                         </li>
                         <li>
-                            <a href="" class="block px-4 py-2 text-sm text-gray-700 rounded-md transition {{ request()->routeIs('counselor.resources.self-help') ? 'bg-gray-200 text-gray-900 font-semibold' : 'hover:bg-gray-100 hover:text-gray-900' }}">Self-Help Tools</a>
+                            <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-pine-100 hover:text-pine-900 rounded-md {{ request()->routeIs('student.resources.self-help') ? 'bg-pine-100 text-pine-900' : '' }}">Self-Help Tools</a>
                         </li>
                     </ul>
                 </li>
@@ -86,7 +83,7 @@
     <div class="flex-1 flex flex-col">
 
         <!-- Navbar -->
-        <header class="w-full bg-[#fafafa] border border-gray-200 h-16 flex items-center px-4 justify-between shrink-0">
+        <header class="w-full bg-[#fafafa] border border-gray-200 h-16 flex items-center px-4 justify-between">
             <div class="flex items-center space-x-4">
                 <!-- Sidebar toggle button -->
                 <button id="sidebarToggle" class="text-gray-700 focus:outline-none">
@@ -140,12 +137,13 @@
         </header>
 
         <!-- Main content -->
-        <div class="flex-1 flex flex-col bg-[#fcfcfc] overflow-hidden">
-            <main class="flex-1 p-[2rem] overflow-y-auto">
+        <div class="flex-1 flex flex-col bg-[#fcfcfc]">
+            <main class="flex-1 p-[2rem]">
                 @yield('body')
             </main>
         </div>
     </div>
+
 
     @stack('scripts')
 

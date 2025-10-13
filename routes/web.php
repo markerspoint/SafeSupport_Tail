@@ -11,6 +11,7 @@ use App\Http\Controllers\Student\ResourceController;
 // counselor
 use App\Http\Controllers\Counselor\CounselorDashboard;
 use App\Http\Controllers\Counselor\CounselorProfileController;
+use App\Http\Controllers\Counselor\CounselorAppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,4 +62,12 @@ Route::middleware('auth')->prefix('counselor')->group(function () {
     Route::get('/dashboard', [CounselorDashboard::class, 'dashboard'])->name('counselor.dashboard');
     Route::get('/profile', [CounselorProfileController::class, 'profile'])->name('counselor.profile');
     Route::put('/profile', [CounselorProfileController::class, 'update'])->name('counselor.profile.update');
-});
+
+    // Route::get('/appointments', [CounselorAppointmentController::class, 'index'])->name('counselor.appointment');
+    // Route::post('/appointments/{appointment}/status', [CounselorAppointmentController::class, 'updateStatus'])->name('appointment.status');
+    // Route::post('/appointments/{appointment}/reschedule', [CounselorAppointmentController::class, 'reschedule'])->name('appointment.reschedule');
+
+    Route::get('/appointments', [CounselorAppointmentController::class, 'index'])->name('counselor.appointment');
+    Route::post('/appointments/{appointment}/status', [CounselorAppointmentController::class, 'updateStatus'])->name('counselor.appointments.status');
+    Route::post('/appointments/{appointment}/reschedule', [CounselorAppointmentController::class, 'reschedule'])->name('counselor.appointments.reschedule');
+}); 
