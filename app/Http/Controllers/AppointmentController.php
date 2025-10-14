@@ -20,12 +20,17 @@ class AppointmentController extends Controller
 
         if ($filter === 'past') {
             $appointments = $query->past()->get();
+        } elseif ($filter === 'upcoming') {
+            $appointments = $query->upcoming()->get();
+        } elseif ($filter === 'pending') {
+            $appointments = $query->where('status', 'pending')->orderBy('date', 'desc')->orderBy('time', 'desc')->get();
         } else {
             $appointments = $query->upcoming()->get();
         }
 
         return view('student.appointments', compact('appointments', 'filter'));
     }
+
 
     /**
      * Show the form for booking a new appointment.
@@ -52,7 +57,7 @@ class AppointmentController extends Controller
             'counselor_id' => $request->counselor_id,
             'date' => $request->date,
             'time' => $request->time,
-            'status' => 'upcoming',
+            'status' => 'pending',
         ]);
 
         StatusHistory::create([

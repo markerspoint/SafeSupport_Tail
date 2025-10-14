@@ -14,8 +14,7 @@ class CounselorAppointmentController extends Controller
         $counselorId = auth()->id();
         $appointments = Appointment::with('user')
             ->where('counselor_id', $counselorId)
-            ->orderBy('date', 'desc')
-            ->orderBy('time', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('counselor.appointment', compact('appointments'));
@@ -59,5 +58,34 @@ class CounselorAppointmentController extends Controller
         ]);
 
         return redirect()->route('counselor.appointment')->with('success', 'Appointment rescheduled successfully.');
+    }
+
+
+
+
+
+    public function dashboard()
+    {
+        $totalAppointments = Appointment::count();
+        $completedSessions = Session::where('status', 'completed')->count();
+        $pendingSessions = Session::where('status', 'pending')->count();
+        $newStudents = User::where('role', 'student')->where('created_at', '>=', now()->subMonth())->count();
+
+        // Example percentage change (replace with your logic)
+        $appointmentChange = rand(-10, 10); // Simulate change
+        $completedChange = rand(-10, 10);
+        $pendingChange = rand(-10, 10);
+        $studentsChange = rand(-10, 10);
+
+        return view('counselor.dashboard', compact(
+            'totalAppointments',
+            'completedSessions',
+            'pendingSessions',
+            'newStudents',
+            'appointmentChange',
+            'completedChange',
+            'pendingChange',
+            'studentsChange'
+        ));
     }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Student\ResourceController;
 use App\Http\Controllers\Counselor\CounselorDashboard;
 use App\Http\Controllers\Counselor\CounselorProfileController;
 use App\Http\Controllers\Counselor\CounselorAppointmentController;
+use App\Http\Controllers\Counselor\CounselorResourceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,11 +64,14 @@ Route::middleware('auth')->prefix('counselor')->group(function () {
     Route::get('/profile', [CounselorProfileController::class, 'profile'])->name('counselor.profile');
     Route::put('/profile', [CounselorProfileController::class, 'update'])->name('counselor.profile.update');
 
-    // Route::get('/appointments', [CounselorAppointmentController::class, 'index'])->name('counselor.appointment');
-    // Route::post('/appointments/{appointment}/status', [CounselorAppointmentController::class, 'updateStatus'])->name('appointment.status');
-    // Route::post('/appointments/{appointment}/reschedule', [CounselorAppointmentController::class, 'reschedule'])->name('appointment.reschedule');
-
     Route::get('/appointments', [CounselorAppointmentController::class, 'index'])->name('counselor.appointment');
     Route::post('/appointments/{appointment}/status', [CounselorAppointmentController::class, 'updateStatus'])->name('counselor.appointments.status');
     Route::post('/appointments/{appointment}/reschedule', [CounselorAppointmentController::class, 'reschedule'])->name('counselor.appointments.reschedule');
+
+    Route::get('/resources/articles', [CounselorResourceController::class, 'articles'])->name('counselor.resources.articles');
+    Route::post('/resources/articles', [CounselorResourceController::class, 'storeArticle'])->name('counselor.resources.articles.store');
+    Route::get('/resources/self-help', [CounselorResourceController::class, 'selfHelp'])->name('counselor.resources.self-help');
+    Route::post('/resources/self-help', [CounselorResourceController::class, 'storeSelfHelp'])->name('counselor.resources.self-help.store');
+    Route::get('/resources/videos', [CounselorResourceController::class, 'videos'])->name('counselor.resources.videos');
+    Route::post('/resources/videos', [CounselorResourceController::class, 'storeVideo'])->name('counselor.resources.videos.store');
 }); 

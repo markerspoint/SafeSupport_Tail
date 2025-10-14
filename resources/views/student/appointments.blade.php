@@ -27,6 +27,12 @@
             <button @click="filter = 'past'; window.location.href = '{{ route('student.appointments') }}?filter=past'" :class="{ 'bg-teal-100 text-teal-900 font-semibold': filter === 'past', 'text-gray-600 hover:bg-gray-50': filter !== 'past' }" class="px-4 py-2 text-sm rounded-lg border border-gray-200">
                 Past
             </button>
+            <button @click="filter = 'pending'; window.location.href = '{{ route('student.appointments') }}?filter=pending'" :class="{ 'bg-teal-100 text-teal-900 font-semibold': filter === 'pending', 'text-gray-600 hover:bg-gray-50': filter !== 'pending' }" class="px-4 py-2 text-sm rounded-lg border border-gray-200">
+                Pending
+            </button>
+        </div>
+        <div x-show="filter === 'pending'" x-cloak class="mt-2 sm:mt-0">
+            <span class="text-sm text-gray-600">Showing pending appointments</span>
         </div>
         <div x-show="filter === 'upcoming'" x-cloak class="mt-2 sm:mt-0">
             <span class="text-sm text-gray-600">Showing upcoming appointments</span>
