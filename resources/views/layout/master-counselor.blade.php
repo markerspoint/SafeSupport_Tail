@@ -10,8 +10,8 @@
 
     <!-- Sidebar -->
     <aside id="sidebar" class="bg-[#fafafa] border border-gray-200 h-full flex flex-col transition-all duration-300 w-64">
-        <div class="flex items-center justify-center h-16 border-b border-gray-100 px-4">
-            <a href="" class="flex items-center">
+        <div class="flex items-center justify-center h-16 border-b border-gray-200 px-4">
+            <a href="{{ route('counselor.dashboard') }}" class="flex items-center">
                 <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="h-8 w-auto">
                 <span class="ml-2 logo-text text-gray-800 text-xl font-bold">SafeSupport</span>
             </a>
@@ -34,14 +34,12 @@
                         <span class="ml-2 menu-text font-[500]">Dashboard</span>
                     </a>
                 </li>
-
-
                 <li>
                     <a href="{{ route('counselor.appointment') }}" class="flex items-center px-4 py-2 rounded-md transition
                     {{ request()->routeIs('counselor.appointment') 
                         ? 'bg-gray-200 text-gray-900 font-semibold' 
                         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('counselor.appointments') ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('counselor.appointment') ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900' }}">
                             <path d="M16 14v2.2l1.6 1" />
                             <path d="M16 4h2a2 2 0 0 1 2 2v.832" />
                             <path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2" />
@@ -51,7 +49,6 @@
                         <span class="ml-2 menu-text font-[500]">Appointment</span>
                     </a>
                 </li>
-
                 <li x-data="{ open: false }">
                     <button type="button" class="flex items-center w-full px-4 py-2 rounded-md transition
                         {{ request()->routeIs('counselor.resources.*') 
@@ -77,8 +74,6 @@
                         </li>
                     </ul>
                 </li>
-
-
                 <li>
                     <a href="" class="flex items-center px-4 py-2 rounded-md transition
                     {{ request()->routeIs('counselor.schedule') 
@@ -89,7 +84,8 @@
                             <path d="M16 2v4" />
                             <path d="M3 10h18" />
                             <path d="M8 2v4" />
-                            <rect x="3" y="4" width="18" height="18" rx="2" /></svg>
+                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                        </svg>
                         <span class="ml-2 menu-text font-[500]">Schedule</span>
                     </a>
                 </li>
@@ -99,7 +95,6 @@
 
     <!-- Main wrapper -->
     <div class="flex-1 flex flex-col">
-
         <!-- Navbar -->
         <header class="w-full bg-[#fafafa] border border-gray-200 h-16 flex items-center px-4 justify-between shrink-0">
             <div class="flex items-center space-x-4">
@@ -115,20 +110,19 @@
                 <nav class="flex justify-between px-3.5 py-1 border border-neutral-200/60 rounded-md">
                     <ol class="inline-flex items-center mb-3 space-x-1 text-xs text-neutral-500 [&_.active-breadcrumb]:text-neutral-600 [&_.active-breadcrumb]:font-medium sm:mb-0">
                         @php
-                        $segments = request()->segments();
+                            $segments = request()->segments();
                         @endphp
-
                         @foreach ($segments as $segment)
-                        <svg class="w-5 h-5 text-gray-400/70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g fill="none" stroke="none">
-                                <path d="M10 8.013l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </g>
-                        </svg>
-                        <li>
-                            <a class="inline-flex items-center py-1 font-normal hover:text-neutral-900 focus:outline-none {{ $loop->last ? 'active-breadcrumb cursor-default' : '' }}" href="{{ $loop->last ? '#' : url(implode('/', array_slice($segments, 0, $loop->index + 1))) }}">
-                                {{ ucfirst($segment) }}
-                            </a>
-                        </li>
+                            <svg class="w-5 h-5 text-gray-400/70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g fill="none" stroke="none">
+                                    <path d="M10 8.013l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </g>
+                            </svg>
+                            <li>
+                                <a class="inline-flex items-center py-1 font-normal hover:text-neutral-900 focus:outline-none {{ $loop->last ? 'active-breadcrumb cursor-default' : '' }}" href="{{ $loop->last ? '#' : url(implode('/', array_slice($segments, 0, $loop->index + 1))) }}">
+                                    {{ ucfirst($segment) }}
+                                </a>
+                            </li>
                         @endforeach
                     </ol>
                 </nav>
@@ -136,8 +130,8 @@
 
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open" class="flex items-center space-x-2 text-pine-900 focus:outline-none">
-                    <div class="w-auto h-10 overflow-hidden border border-gray-200 rounded-full">
-                        <img src="{{ asset('img/icons/default-profile.jpg') }}" alt="user" class="object-cover w-full h-full" />
+                    <div class="w-10 h-10 overflow-hidden border border-gray-200 rounded-full">
+                        <img src="{{ getUserAvatarUrl(auth()->user()) }}" alt="user" class="object-cover w-full h-full" />
                     </div>
                     <span class="text-sm font-medium">{{ auth()->user()->name }}</span>
                     <svg class="w-5 h-5 text-pine-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -163,6 +157,5 @@
     </div>
 
     @stack('scripts')
-
 </body>
 </html>

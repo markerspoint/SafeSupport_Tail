@@ -22,6 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'gender',
+        'avatar',
     ];
 
     /**
@@ -43,5 +45,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'role' => 'string',
+        'gender' => 'string',
     ];
 }

@@ -27,7 +27,6 @@
             <div class="rounded-lg overflow-hidden border border-neutral-200/60 bg-white text-neutral-700 shadow-sm w-full">
                 <div class="relative">
                     @php
-                    // Extract YouTube video ID from URL
                     $youtubeId = null;
                     if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $video->url, $match)) {
                     $youtubeId = $match[1];
@@ -51,10 +50,7 @@
                             <button @click="expanded = !expanded" x-text="expanded ? 'Read less' : 'Read more'" class="text-gray-600 hover:underline text-xs font-medium focus:outline-none"></button>
                         </div>
                         @endif
-
                     </div>
-
-
                     <a href="{{ $video->url }}" target="_blank" class="inline-flex items-center justify-center w-full h-10 px-4 py-2 text-sm font-medium text-white transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-emerald-500 hover:bg-emerald-600">View Video</a>
                 </div>
             </div>

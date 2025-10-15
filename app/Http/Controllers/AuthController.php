@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -51,14 +52,28 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'gender' => ['required', Rule::in(['male', 'female'])],
         ]);
 
+        // Map gender to API-compatible values
+        $genderMap = [
+            'male' => 'boy',
+            'female' => 'girl',
+        ];
+        $gender = $data['gender'] ? ($genderMap[$data['gender']] ?? 'boy') : 'boy';
+
         // Create the user with default role 'student'
-        User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => 'student',
+            'gender' => $data['gender'],
+        ]);
+
+        // Generate and save the avatar URL after creation (since ID is now available)
+        $user->update([
+            'avatar' => "https://avatar.iran.liara.run/public/{$gender}?seed={$user->id}",
         ]);
 
         // Redirect to login page with success message

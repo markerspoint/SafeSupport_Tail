@@ -20,15 +20,31 @@ class CounselorProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->id())],
             'password' => ['nullable', 'confirmed', 'min:8'],
+            'gender' => ['required', Rule::in(['male', 'female'])],
         ]);
 
         $user = auth()->user();
 
-        $user->update([
+        $updateData = [
             'name' => $request->name,
             'email' => $request->email,
-            ...( $request->filled('password') ? ['password' => Hash::make($request->password)] : [] ),
-        ]);
+            'gender' => $request->gender,
+        ];
+
+        if ($request->filled('password')) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
+        if ($user->gender !== $request->gender) {
+            $genderMap = [
+                'male' => 'boy',
+                'female' => 'girl',
+            ];
+            $gender = $request->gender ? ($genderMap[$request->gender] ?? 'boy') : 'boy';
+            $updateData['avatar'] = "https://avatar.iran.liara.run/public/{$gender}?seed={$user->id}";
+        }
+
+        $user->update($updateData);
 
         return redirect()->route('counselor.profile')->with('success', 'Profile updated successfully.');
     }
