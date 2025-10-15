@@ -24,9 +24,9 @@
                 <li>
                     <a href="{{ route('student.dashboard') }}" class="flex items-center px-4 py-2 rounded-md transition
                     {{ request()->routeIs('student.dashboard') 
-                        ? 'bg-pine-100 text-pine-900 border-l-4 border-pine-600 font-semibold' 
-                        : 'text-gray-700 hover:bg-pine-100 hover:text-pine-900' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('student.dashboard') ? 'text-pine-900' : 'text-gray-600 hover:text-pine-900' }}">
+                        ? 'bg-gray-200 text-pine-900 font-semibold' 
+                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('student.dashboard') ? 'text-pine-900' : 'text-gray-600 hover:text-gray-900' }}">
                             <rect width="7" height="9" x="3" y="3" rx="1" />
                             <rect width="7" height="5" x="14" y="3" rx="1" />
                             <rect width="7" height="9" x="14" y="12" rx="1" />
@@ -40,9 +40,9 @@
                 <li>
                     <a href="{{ route('student.appointments') }}" class="flex items-center px-4 py-2 rounded-md transition
                     {{ request()->routeIs('student.appointments') 
-                        ? 'bg-pine-100 text-pine-900 border-l-4 border-pine-600 font-semibold' 
-                        : 'text-gray-700 hover:bg-pine-100 hover:text-pine-900' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('student.appointments') ? 'text-pine-900' : 'text-gray-600 hover:text-pine-900' }}">
+                        ? 'bg-gray-200 text-pine-900 font-semibold' 
+                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 {{ request()->routeIs('student.appointments') ? 'text-pine-900' : 'text-gray-600 hover:text-gray-900' }}">
                             <path d="M16 14v2.2l1.6 1" />
                             <path d="M16 4h2a2 2 0 0 1 2 2v.832" />
                             <path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2" />
@@ -55,8 +55,8 @@
 
                 <!-- Resources with Expandable Sub-items -->
                 <li x-data="{ open: false }">
-                    <button type="button" class="flex items-center w-full px-4 py-2 rounded-md transition text-gray-700 hover:bg-pine-100 hover:text-pine-900 focus:outline-none" @click="open = !open">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-600 hover:text-pine-900">
+                    <button type="button" class="flex items-center w-full px-4 py-2 rounded-md transition text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none" @click="open = !open">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-gray-600 hover:text-gray-900">
                             <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
                         </svg>
                         <span class="ml-2 menu-text font-[500]">Resources</span>
@@ -66,13 +66,13 @@
                     </button>
                     <ul class="pl-6 space-y-1" x-show="open" x-transition>
                         <li>
-                            <a href="{{ route('student.resources.videos') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-pine-100 hover:text-pine-900 rounded-md {{ request()->routeIs('student.resources.videos') ? 'bg-pine-100 text-pine-900' : '' }}">Videos</a>
+                            <a href="{{ route('student.resources.videos') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md {{ request()->routeIs('student.resources.videos') ? 'bg-gray-200 text-pine-900' : '' }}">Videos</a>
                         </li>
                         <li>
-                            <a href="{{ route('student.resources.articles') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-pine-100 hover:text-pine-900 rounded-md {{ request()->routeIs('student.resources.articles') ? 'bg-pine-100 text-pine-900' : '' }}">Articles</a>
+                            <a href="{{ route('student.resources.articles') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md {{ request()->routeIs('student.resources.articles') ? 'bg-gray-200 text-pine-900' : '' }}">Articles</a>
                         </li>
                         <li>
-                            <a href="{{ route('student.resources.self-help') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-pine-100 hover:text-pine-900 rounded-md {{ request()->routeIs('student.resources.self-help') ? 'bg-pine-100 text-pine-900' : '' }}">Self-Help Tools</a>
+                            <a href="{{ route('student.resources.self-help') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-md {{ request()->routeIs('student.resources.self-help') ? 'bg-gray-200 text-pine-900' : '' }}">Self-Help Tools</a>
                         </li>
                     </ul>
                 </li>
@@ -80,21 +80,17 @@
         </nav>
     </aside>
 
-    <!-- Main wrapper -->
+    <!-- Main wrapper (unchanged) -->
     <div class="flex-1 flex flex-col">
-
         <!-- Navbar -->
         <header class="w-full bg-[#fafafa] border border-gray-200 h-16 flex items-center px-4 justify-between">
             <div class="flex items-center space-x-4">
-                <!-- Sidebar toggle button -->
                 <button id="sidebarToggle" class="text-gray-700 focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-icon lucide-panel-left">
                         <rect width="18" height="18" x="3" y="3" rx="2" />
                         <path d="M9 3v18" />
                     </svg>
                 </button>
-
-                <!-- Breadcrumb -->
                 <nav class="flex justify-between px-3.5 py-1 border border-neutral-200/60 rounded-md">
                     <ol class="inline-flex items-center mb-3 space-x-1 text-xs text-neutral-500 [&_.active-breadcrumb]:text-neutral-600 [&_.active-breadcrumb]:font-medium sm:mb-0">
                         @php
@@ -115,15 +111,13 @@
                     </ol>
                 </nav>
             </div>
-
-            <!-- Profile Dropdown -->
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open" class="flex items-center space-x-2 text-pine-900 focus:outline-none">
                     <div class="w-10 h-10 overflow-hidden border border-gray-200 rounded-full">
                         <img src="{{ getUserAvatarUrl(auth()->user()) }}" alt="user" class="object-cover w-full h-full" />
                     </div>
                     <span class="text-sm font-medium">{{ auth()->user()->name }}</span>
-                    <svg class="w-5 h-5 text-pine-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <svg class="w-5 h-5 text-pine-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 咒 stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                     </svg>
                 </button>

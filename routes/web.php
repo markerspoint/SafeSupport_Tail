@@ -13,6 +13,7 @@ use App\Http\Controllers\Counselor\CounselorDashboard;
 use App\Http\Controllers\Counselor\CounselorProfileController;
 use App\Http\Controllers\Counselor\CounselorAppointmentController;
 use App\Http\Controllers\Counselor\CounselorResourceController;
+use App\Http\Controllers\Counselor\CounselorScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,4 +75,6 @@ Route::middleware('auth')->prefix('counselor')->group(function () {
     Route::post('/resources/self-help', [CounselorResourceController::class, 'storeSelfHelp'])->name('counselor.resources.self-help.store');
     Route::get('/resources/videos', [CounselorResourceController::class, 'videos'])->name('counselor.resources.videos');
     Route::post('/resources/videos', [CounselorResourceController::class, 'storeVideo'])->name('counselor.resources.videos.store');
+
+    Route::get('/schedule', [CounselorScheduleController::class, 'index'])->name('counselor.schedule');
 }); 

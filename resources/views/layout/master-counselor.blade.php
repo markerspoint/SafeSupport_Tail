@@ -75,7 +75,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="" class="flex items-center px-4 py-2 rounded-md transition
+                    <a href="{{ route('counselor.schedule') }}" class="flex items-center px-4 py-2 rounded-md transition
                     {{ request()->routeIs('counselor.schedule') 
                         ? 'bg-gray-200 text-gray-900 font-semibold' 
                         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900' }}">

@@ -96,18 +96,10 @@
                     <p class="text-gray-600 text-xs" x-text="filter === 'monthly' ? 'Total Appointments this month' : 'Total Appointments this week'"></p>
                 </div>
                 <div class="flex space-x-2">
-                    <button 
-                        @click="filter = 'monthly'" 
-                        :class="{ 'bg-emerald-500 text-white': filter === 'monthly', 'bg-gray-100 text-gray-700': filter !== 'monthly' }" 
-                        class="px-4 py-1 text-sm font-medium rounded-full transition"
-                    >
+                    <button @click="filter = 'monthly'" :class="{ 'bg-emerald-500 text-white': filter === 'monthly', 'bg-gray-100 text-gray-700': filter !== 'monthly' }" class="px-4 py-1 text-sm font-medium rounded-full transition">
                         Monthly
                     </button>
-                    <button 
-                        @click="filter = 'weekly'" 
-                        :class="{ 'bg-emerald-500 text-white': filter === 'weekly', 'bg-gray-100 text-gray-700': filter !== 'weekly' }" 
-                        class="px-4 py-1 text-sm font-medium rounded-full transition"
-                    >
+                    <button @click="filter = 'weekly'" :class="{ 'bg-emerald-500 text-white': filter === 'weekly', 'bg-gray-100 text-gray-700': filter !== 'weekly' }" class="px-4 py-1 text-sm font-medium rounded-full transition">
                         Weekly
                     </button>
                 </div>
@@ -135,25 +127,30 @@
                         <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
                         <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                         <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Reason</th>
-                    </tr>   
+                    </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                     @foreach($recentAppointments as $appointment)
                     <tr class="hover:bg-gray-50 transition">
                         <td class="px-4 py-2">
-                            <div class="flex flex-col">
-                                <span class="text-gray-700">{{ $appointment->user->name }}</span>
-                                <span class="text-xs text-gray-500">{{ $appointment->user->email }}</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 overflow-hidden border border-gray-200 rounded-full">
+                                    <img src="{{ getUserAvatarUrl(auth()->user()) }}" alt="{{ auth()->user()->name }}" class="object-cover w-full h-full" />
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-gray-700">{{ $appointment->user->name }}</span>
+                                    <span class="text-xs text-gray-500">{{ $appointment->user->email }}</span>
+                                </div>
                             </div>
                         </td>
                         <td class="px-4 py-2 text-gray-600">{{ $appointment->appointment_date_time->format('d M, Y h:i A') }}</td>
                         <td class="px-4 py-2 capitalize">
                             @php
                             $statusColors = [
-                                'upcoming' => 'bg-green-200 text-gray-800',
-                                'past' => 'bg-gray-100 text-gray-700',
-                                'cancelled' => 'bg-red-100 text-red-700',
-                                'pending' => 'bg-green-300 text-gray-800',
+                            'upcoming' => 'bg-green-200 text-gray-800',
+                            'past' => 'bg-gray-100 text-gray-700',
+                            'cancelled' => 'bg-red-100 text-red-700',
+                            'pending' => 'bg-green-300 text-gray-800',
                             ];
                             @endphp
                             <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full shadow-sm {{ $statusColors[$appointment->status] ?? 'bg-gray-100 text-gray-700' }}">
@@ -188,71 +185,71 @@
 
         const ctx = document.getElementById('appointmentsChart').getContext('2d');
         const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
-        gradient.addColorStop(0, 'rgba(52, 211, 153, 0.9)'); 
-        gradient.addColorStop(1, 'rgba(52, 211, 153, 0.1)');   
+        gradient.addColorStop(0, 'rgba(52, 211, 153, 0.9)');
+        gradient.addColorStop(1, 'rgba(52, 211, 153, 0.1)');
 
         new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: monthlyLabels,
-                datasets: [{
-                    label: 'Appointments',
-                    data: monthlyData,
-                    borderColor: '#34d399',
-                    backgroundColor: gradient, 
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 5,
-                    pointHoverRadius: 7
+            type: 'line'
+            , data: {
+                labels: monthlyLabels
+                , datasets: [{
+                    label: 'Appointments'
+                    , data: monthlyData
+                    , borderColor: '#34d399'
+                    , backgroundColor: gradient
+                    , fill: true
+                    , tension: 0.4
+                    , pointRadius: 5
+                    , pointHoverRadius: 7
                 }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
+            }
+            , options: {
+                responsive: true
+                , plugins: {
                     legend: {
-                        display: false,
-                        position: 'top',
-                        labels: {
+                        display: false
+                        , position: 'top'
+                        , labels: {
                             font: {
-                                family: "'Inter', sans-serif",
-                                size: 12,
-                                weight: '500'
-                            },
-                            color: '#1f2937'
+                                family: "'Inter', sans-serif"
+                                , size: 12
+                                , weight: '500'
+                            }
+                            , color: '#1f2937'
                         }
                     }
-                },
-                scales: {
+                }
+                , scales: {
                     x: {
                         grid: {
                             display: false
-                        },
-                        ticks: {
-                            font: {
-                                family: "'Inter', sans-serif",
-                                size: 12
-                            },
-                            color: '#4b5563'
                         }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(209, 213, 219, 0.3)',
-                            borderDash: [4, 4]
-                        },
-                        ticks: {
+                        , ticks: {
                             font: {
-                                family: "'Inter', sans-serif",
-                                size: 12
-                            },
-                            color: '#4b5563'
+                                family: "'Inter', sans-serif"
+                                , size: 12
+                            }
+                            , color: '#4b5563'
                         }
                     }
-                },
-                animation: {
-                    duration: 1000,
-                    easing: 'easeOutQuart'
+                    , y: {
+                        beginAtZero: true
+                        , grid: {
+                            color: 'rgba(209, 213, 219, 0.3)'
+                            , borderDash: [4, 4]
+                        }
+                        , ticks: {
+                            font: {
+                                family: "'Inter', sans-serif"
+                                , size: 12
+                            }
+                            , color: '#4b5563'
+                        }
+                    }
+                }
+                , animation: {
+                    duration: 1000
+                    , easing: 'easeOutQuart'
                 }
             }
         });
@@ -264,95 +261,122 @@
         } else {
             const safeMax = sessionData.length ? Math.max(...sessionData) : 10;
             new Chart(completionCtx, {
-                type: 'bar',
-                data: {
+                type: 'bar'
+                , data: {
                     labels: ['Past', 'Cancelled', 'Upcoming', 'Pending'], // X-axis labels
-                    datasets: [
-                        {
-                            label: 'Past',
-                            data: [sessionData[0] || 0, 0, 0, 0], // Only Past has value
+                    datasets: [{
+                            label: 'Past'
+                            , data: [sessionData[0] || 0, 0, 0, 0], // Only Past has value
                             backgroundColor: '#ecfdf5', // emerald-50
                             borderColor: '#a7f3d0', // emerald-200
-                            borderWidth: 1,
-                            borderRadius: 8,
-                            barThickness: 20
-                        },
-                        {
-                            label: 'Cancelled',
-                            data: [0, sessionData[1] || 0, 0, 0], // Only Cancelled has value
+                            borderWidth: 1
+                            , borderRadius: 8
+                            , barThickness: 20
+                        }
+                        , {
+                            label: 'Cancelled'
+                            , data: [0, sessionData[1] || 0, 0, 0], // Only Cancelled has value
                             backgroundColor: '#d1fae5', // emerald-100
                             borderColor: '#6ee7b7', // emerald-300
-                            borderWidth: 1,
-                            borderRadius: 8,
-                            barThickness: 20
-                        },
-                        {
-                            label: 'Upcoming',
-                            data: [0, 0, sessionData[2] || 0, 0], // Only Upcoming has value
+                            borderWidth: 1
+                            , borderRadius: 8
+                            , barThickness: 20
+                        }
+                        , {
+                            label: 'Upcoming'
+                            , data: [0, 0, sessionData[2] || 0, 0], // Only Upcoming has value
                             backgroundColor: '#a7f3d0', // emerald-200
                             borderColor: '#34d399', // emerald-400
-                            borderWidth: 1,
-                            borderRadius: 8,
-                            barThickness: 20
-                        },
-                        {
-                            label: 'Pending',
-                            data: [0, 0, 0, sessionData[3] || 0], // Only Pending has value
+                            borderWidth: 1
+                            , borderRadius: 8
+                            , barThickness: 20
+                        }
+                        , {
+                            label: 'Pending'
+                            , data: [0, 0, 0, sessionData[3] || 0], // Only Pending has value
                             backgroundColor: '#6ee7b7', // emerald-300
                             borderColor: '#10b981', // emerald-500
-                            borderWidth: 1,
-                            borderRadius: 8,
-                            barThickness: 20
+                            borderWidth: 1
+                            , borderRadius: 8
+                            , barThickness: 20
                         }
                     ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    layout: { padding: 10 },
-                    plugins: {
+                }
+                , options: {
+                    responsive: true
+                    , maintainAspectRatio: true
+                    , layout: {
+                        padding: 10
+                    }
+                    , plugins: {
                         legend: {
-                            display: true,
-                            position: 'top',
-                            labels: {
-                                font: { family: "'Inter', sans-serif", size: 12, weight: '500' },
-                                color: '#1f2937'
+                            display: true
+                            , position: 'top'
+                            , labels: {
+                                font: {
+                                    family: "'Inter', sans-serif"
+                                    , size: 12
+                                    , weight: '500'
+                                }
+                                , color: '#1f2937'
                             }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(31, 41, 55, 0.9)',
-                            titleFont: { family: "'Inter', sans-serif", size: 14, weight: '600' },
-                            bodyFont: { family: "'Inter', sans-serif", size: 12 },
-                            padding: 12,
-                            cornerRadius: 6
                         }
-                    },
-                    scales: {
+                        , tooltip: {
+                            backgroundColor: 'rgba(31, 41, 55, 0.9)'
+                            , titleFont: {
+                                family: "'Inter', sans-serif"
+                                , size: 14
+                                , weight: '600'
+                            }
+                            , bodyFont: {
+                                family: "'Inter', sans-serif"
+                                , size: 12
+                            }
+                            , padding: 12
+                            , cornerRadius: 6
+                        }
+                    }
+                    , scales: {
                         x: {
-                            grid: { display: false },
-                            ticks: { font: { family: "'Inter', sans-serif", size: 12 }, color: '#4b5563' }
-                        },
-                        y: {
-                            beginAtZero: true,
-                            suggestedMax: safeMax * 1.2,
-                            grid: { color: 'rgba(209, 213, 219, 0.3)', borderDash: [4, 4] },
-                            ticks: {
-                                font: { family: "'Inter', sans-serif", size: 12 },
-                                color: '#4b5563',
-                                stepSize: Math.ceil(safeMax / 5) || 1
+                            grid: {
+                                display: false
+                            }
+                            , ticks: {
+                                font: {
+                                    family: "'Inter', sans-serif"
+                                    , size: 12
+                                }
+                                , color: '#4b5563'
                             }
                         }
-                    },
-                    barPercentage: 0.2, // Reduce bar width
+                        , y: {
+                            beginAtZero: true
+                            , suggestedMax: safeMax * 1.2
+                            , grid: {
+                                color: 'rgba(209, 213, 219, 0.3)'
+                                , borderDash: [4, 4]
+                            }
+                            , ticks: {
+                                font: {
+                                    family: "'Inter', sans-serif"
+                                    , size: 12
+                                }
+                                , color: '#4b5563'
+                                , stepSize: Math.ceil(safeMax / 5) || 1
+                            }
+                        }
+                    }
+                    , barPercentage: 0.2, // Reduce bar width
                     categoryPercentage: 0.8, // Add spacing between bars
                     animation: {
-                        duration: 1000,
-                        easing: 'easeOutQuart'
+                        duration: 1000
+                        , easing: 'easeOutQuart'
                     }
                 }
             });
         }
-        
+
     });
+
 </script>
 @endpush

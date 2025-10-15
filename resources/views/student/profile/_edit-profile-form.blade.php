@@ -15,7 +15,7 @@
             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
-    <div>
+    <div class="hidden">
         <label for="gender" class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
         <select name="gender" id="gender" required class="w-full border border-gray-200 rounded-md p-3 text-sm text-gray-600 bg-white focus:ring-gray-300 focus:border-gray-300 transition-colors disabled:bg-gray-100 disabled:text-gray-400">
             <option value="" {{ old('gender', auth()->user()->gender) ? '' : 'selected' }} disabled>Select gender</option>
