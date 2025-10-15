@@ -11,7 +11,7 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="bg-[#fafafa] border border-gray-200 h-full flex flex-col transition-all duration-300 w-64">
         <div class="flex items-center justify-center h-16 border-b border-gray-100 px-4">
-            <a href="" class="flex items-center">
+            <a href="{{ route('student.dashboard') }}" class="flex items-center">
                 <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="h-8 w-auto">
                 <span class="ml-2 logo-text text-gray-800 text-xl font-bold">SafeSupport</span>
             </a>
@@ -97,22 +97,20 @@
                 <!-- Breadcrumb -->
                 <nav class="flex justify-between px-3.5 py-1 border border-neutral-200/60 rounded-md">
                     <ol class="inline-flex items-center mb-3 space-x-1 text-xs text-neutral-500 [&_.active-breadcrumb]:text-neutral-600 [&_.active-breadcrumb]:font-medium sm:mb-0">
-                        <!-- Dynamic breadcrumbs -->
                         @php
-                        $segments = request()->segments();
+                            $segments = request()->segments();
                         @endphp
-
                         @foreach ($segments as $segment)
-                        <svg class="w-5 h-5 text-gray-400/70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g fill="none" stroke="none">
-                                <path d="M10 8.013l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </g>
-                        </svg>
-                        <li>
-                            <a class="inline-flex items-center py-1 font-normal hover:text-neutral-900 focus:outline-none {{ $loop->last ? 'active-breadcrumb cursor-default' : '' }}" href="{{ $loop->last ? '#' : url(implode('/', array_slice($segments, 0, $loop->index + 1))) }}">
-                                {{ ucfirst($segment) }}
-                            </a>
-                        </li>
+                            <svg class="w-5 h-5 text-gray-400/70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g fill="none" stroke="none">
+                                    <path d="M10 8.013l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </g>
+                            </svg>
+                            <li>
+                                <a class="inline-flex items-center py-1 font-normal hover:text-neutral-900 focus:outline-none {{ $loop->last ? 'active-breadcrumb cursor-default' : '' }}" href="{{ $loop->last ? '#' : url(implode('/', array_slice($segments, 0, $loop->index + 1))) }}">
+                                    {{ ucfirst($segment) }}
+                                </a>
+                            </li>
                         @endforeach
                     </ol>
                 </nav>
@@ -121,9 +119,9 @@
             <!-- Profile Dropdown -->
             <div x-data="{ open: false }" class="relative">
                 <button @click="open = !open" class="flex items-center space-x-2 text-pine-900 focus:outline-none">
-                    <svg class="w-5 h-5 text-pine-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                    </svg>
+                    <div class="w-10 h-10 overflow-hidden border border-gray-200 rounded-full">
+                        <img src="{{ getUserAvatarUrl(auth()->user()) }}" alt="user" class="object-cover w-full h-full" />
+                    </div>
                     <span class="text-sm font-medium">{{ auth()->user()->name }}</span>
                     <svg class="w-5 h-5 text-pine-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />

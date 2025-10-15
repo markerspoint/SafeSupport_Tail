@@ -15,6 +15,28 @@
             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
+    <div>
+        <label for="gender" class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+        <select name="gender" id="gender" required class="w-full border border-gray-200 rounded-md p-3 text-sm text-gray-600 bg-white focus:ring-gray-300 focus:border-gray-300 transition-colors disabled:bg-gray-100 disabled:text-gray-400">
+            <option value="" {{ old('gender', auth()->user()->gender) ? '' : 'selected' }} disabled>Select gender</option>
+            <option value="male" {{ old('gender', auth()->user()->gender) === 'male' ? 'selected' : '' }}>Male</option>
+            <option value="female" {{ old('gender', auth()->user()->gender) === 'female' ? 'selected' : '' }}>Female</option>
+        </select>
+        @error('gender')
+            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+    <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password (leave blank to keep unchanged)</label>
+        <input type="password" name="password" id="password" class="w-full border border-gray-200 rounded-md p-3 text-sm text-gray-600 bg-white focus:ring-gray-300 focus:border-gray-300 transition-colors disabled:bg-gray-100 disabled:text-gray-400">
+        @error('password')
+            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+    <div>
+        <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+        <input type="password" name="password_confirmation" id="password_confirmation" class="w-full border border-gray-200 rounded-md p-3 text-sm text-gray-600 bg-white focus:ring-gray-300 focus:border-gray-300 transition-colors disabled:bg-gray-100 disabled:text-gray-400">
+    </div>
     <div class="mt-6 flex justify-end space-x-3">
         <button type="button" x-on:click="isProfileModal = false" class="inline-flex h-11 items-center px-6 text-sm font-medium text-gray-600 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">Cancel</button>
         <button type="submit" class="inline-flex h-11 items-center px-6 text-sm font-medium text-white bg-[#171717] rounded-md hover:bg-[#2d2d2d] transition-colors">Save</button>

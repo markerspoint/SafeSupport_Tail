@@ -19,14 +19,14 @@
             <div class="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
                 <div class="flex flex-col items-center w-full gap-6 xl:flex-row">
                     <div class="w-20 h-20 overflow-hidden border border-gray-200 rounded-full">
-                        <img src="{{ asset('img/icons/default-profile.jpg') }}" alt="user" class="object-cover w-full h-full" />
+                        <img src="{{ getUserAvatarUrl(auth()->user()) }}" alt="user" class="object-cover w-full h-full" />
                     </div>
                     <div class="order-3 xl:order-2">
                         <h4 class="mb-2 text-lg font-semibold text-center text-pine-900 xl:text-left">
                             {{ auth()->user()->name }}
                         </h4>
                         <div class="flex flex-col items-center gap-1 text-center xl:flex-row xl:gap-3 xl:text-left">
-                            <p class="text-sm text-gray-500">Counselor</p>
+                            <p class="text-sm text-gray-500">Student</p>
                             <div class="hidden h-3.5 w-px bg-gray-300 xl:block"></div>
                             <p class="text-sm text-gray-500">
                                 Joined: {{ auth()->user()->created_at->format('F j, Y') }}
@@ -71,6 +71,10 @@
                         <div>
                             <p class="mb-2 text-xs leading-normal text-gray-500">Email</p>
                             <p class="text-sm font-medium text-pine-900">{{ auth()->user()->email }}</p>
+                        </div>
+                        <div>
+                            <p class="mb-2 text-xs leading-normal text-gray-500">Gender</p>
+                            <p class="text-sm font-medium text-pine-900">{{ auth()->user()->gender ? ucfirst(auth()->user()->gender) : 'Not set' }}</p>
                         </div>
                     </div>
                 </div>
