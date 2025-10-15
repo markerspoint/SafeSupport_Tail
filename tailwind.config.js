@@ -1,19 +1,44 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./resources/views/**/*.blade.php",   // all Blade templates
-    "./resources/js/**/*.js",             // JS files (if using JS classes)
-    "./resources/js/**/*.vue",            // Vue (optional, not needed for Livewire)
-    "./resources/js/**/*.jsx",
-    "./resources/js/**/*.ts",
-    "./resources/js/**/*.tsx",
-  ],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Poppins'],
-      },
+    content: [
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.css',
+        './node_modules/flowbite/**/*.js',
+    ],
+    theme: {
+        extend: {
+            colors: {
+                'gray-25': '#fcfcfd',
+                'gray-50': '#f9fafb',
+                'gray-100': '#f2f4f7',
+                'gray-200': '#e4e7ec',
+                'gray-300': '#d0d5dd',
+                'gray-400': '#98a2b3',
+                'gray-500': '#667085',
+                'gray-600': '#475467',
+                'gray-700': '#344054',
+                'gray-800': '#1d2939',
+                'gray-900': '#101828',
+                'gray-950': '#0c111d',
+                'success-50': '#ecfdf3',
+                'success-100': '#d1fadf',
+                'success-200': '#a6f4c5',
+                'success-300': '#6ce9a6',
+                'success-400': '#32d583',
+                'success-500': '#12b76a',
+                'success-600': '#039855',
+                'success-700': '#027a48',
+                'success-800': '#05603a',
+                'success-900': '#054f31',
+                'success-950': '#053321',
+                'error-50': '#fef3f2',
+                'error-600': '#d92d20',
+                'error-700': '#b42318',
+                'error-300': '#fda29b'
+            },
+        },
     },
-  },
-  plugins: [],
-}
+    plugins: [
+        require('flowbite/plugin'),
+    ],
+};

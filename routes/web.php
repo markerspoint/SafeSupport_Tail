@@ -60,6 +60,7 @@ Route::middleware('auth')->prefix('student')->group(function () {
     Route::get('/resources/self-help', [ResourceController::class, 'selfHelp'])->name('student.resources.self-help');
 });
 
+
 Route::middleware('auth')->prefix('counselor')->group(function () {
     Route::get('/dashboard', [CounselorDashboard::class, 'dashboard'])->name('counselor.dashboard');
     Route::get('/profile', [CounselorProfileController::class, 'profile'])->name('counselor.profile');
@@ -77,4 +78,13 @@ Route::middleware('auth')->prefix('counselor')->group(function () {
     Route::post('/resources/videos', [CounselorResourceController::class, 'storeVideo'])->name('counselor.resources.videos.store');
 
     Route::get('/schedule', [CounselorScheduleController::class, 'index'])->name('counselor.schedule');
+    Route::get('/schedules', [CounselorScheduleController::class, 'fetch'])->name('counselor.schedules.fetch');
+    Route::post('/schedules', [CounselorScheduleController::class, 'store'])->name('counselor.schedules.store');
+    Route::patch('/schedules/{schedule}', [CounselorScheduleController::class, 'update'])->name('counselor.schedules.update');
+    Route::delete('/schedules/{schedule}', [CounselorScheduleController::class, 'destroy'])->name('counselor.schedules.destroy');
 }); 
+
+
+Route::get('/test-auth', function () {
+    return response()->json(['user' => Auth::check() ? Auth::user() : null]);
+});

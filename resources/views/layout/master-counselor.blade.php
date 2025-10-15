@@ -2,9 +2,11 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'SafeSupport') }} - @yield('title')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+     @stack('style')
 </head>
 <body class="flex h-screen">
 
@@ -156,6 +158,8 @@
         </div>
     </div>
 
+    {{-- <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script> --}}
+    <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
     @stack('scripts')
 </body>
 </html>

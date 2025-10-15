@@ -7,6 +7,16 @@ Alpine.start();
 import Chart from "chart.js/auto";
 window.Chart = Chart;
 
+import { Modal } from 'flowbite/dist/flowbite';
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
+window.Flowbite = { Modal };
+window.FullCalendar = { Calendar, dayGridPlugin, timeGridPlugin, interactionPlugin };
+
+
 
 
 // Sidebar master layout toggle
