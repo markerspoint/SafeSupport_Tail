@@ -1,6 +1,6 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"); */
 
-@tailwind base;
+/* @tailwind base;
 @tailwind utilities;
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -157,4 +157,4 @@
 
 .fc .fc-timegrid-axis-cushion {
     @apply text-sm font-medium text-gray-500 dark:text-gray-400;
-}
+} */

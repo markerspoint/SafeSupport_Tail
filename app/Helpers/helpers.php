@@ -4,7 +4,7 @@ if (!function_exists('getUserAvatarUrl')) {
     function getUserAvatarUrl($user)
     {
         if ($user->avatar) {
-            return $user->avatar; // Use stored avatar URL
+            return $user->avatar;
         }
 
         $genderMap = [
@@ -12,6 +12,11 @@ if (!function_exists('getUserAvatarUrl')) {
             'female' => 'girl',
         ];
         $gender = $user->gender ? ($genderMap[$user->gender] ?? 'boy') : 'boy';
-        return "https://avatar.iran.liara.run/public/{$gender}?seed={$user->id}";
+        $avatarUrl = "https://avatar.iran.liara.run/public/{$gender}?seed={$user->id}";
+
+        // Save the generated avatar URL to the user's avatar column
+        $user->update(['avatar' => $avatarUrl]);
+
+        return $avatarUrl;
     }
 }

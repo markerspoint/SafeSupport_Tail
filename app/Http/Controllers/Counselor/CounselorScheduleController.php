@@ -39,11 +39,14 @@ class CounselorScheduleController extends Controller
             $schedules = Schedule::where('user_id', Auth::id())
                 ->where('start', '>=', $start)
                 ->where('end', '<=', $end)
-                ->get(['id', 'title', 'start', 'end'])
+                ->get(['id', 'title', 'color', 'start', 'end'])
                 ->map(function ($schedule) {
                     return [
                         'id' => $schedule->id,
                         'title' => $schedule->title,
+                        'backgroundColor' => $schedule->color ?? '#60A5FA', // Default to pastel blue
+                        'borderColor' => $schedule->color ?? '#60A5FA',
+                        'textColor' => '#ffffff', // White text for contrast
                         'start' => $schedule->start->toIso8601String(),
                         'end' => $schedule->end->toIso8601String(),
                     ];
@@ -63,6 +66,7 @@ class CounselorScheduleController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'color' => 'required|string|regex:/^#[a-f0-9]{6}$/i', // Validate hex color
             'start' => 'required|date',
             'end' => 'required|date|after:start',
         ]);
@@ -70,6 +74,7 @@ class CounselorScheduleController extends Controller
         $schedule = Schedule::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
+            'color' => $request->color ?? '#60A5FA', // Default pastel blue
             'start' => Carbon::parse($request->start),
             'end' => Carbon::parse($request->end),
         ]);
@@ -77,6 +82,9 @@ class CounselorScheduleController extends Controller
         return response()->json([
             'id' => $schedule->id,
             'title' => $schedule->title,
+            'backgroundColor' => $schedule->color,
+            'borderColor' => $schedule->color,
+            'textColor' => '#ffffff',
             'start' => $schedule->start->toIso8601String(),
             'end' => $schedule->end->toIso8601String(),
         ]);
@@ -94,12 +102,14 @@ class CounselorScheduleController extends Controller
 
         $request->validate([
             'title' => 'sometimes|string|max:255',
+            'color' => 'sometimes|string|regex:/^#[a-f0-9]{6}$/i', // Optional hex color
             'start' => 'required|date',
             'end' => 'required|date|after:start',
         ]);
 
         $schedule->update([
             'title' => $request->title ?? $schedule->title,
+            'color' => $request->color ?? $schedule->color ?? '#60A5FA',
             'start' => Carbon::parse($request->start),
             'end' => Carbon::parse($request->end),
         ]);
@@ -109,6 +119,9 @@ class CounselorScheduleController extends Controller
         return response()->json([
             'id' => $schedule->id,
             'title' => $schedule->title,
+            'backgroundColor' => $schedule->color,
+            'borderColor' => $schedule->color,
+            'textColor' => '#ffffff',
             'start' => $schedule->start->toIso8601String(),
             'end' => $schedule->end->toIso8601String(),
         ]);
