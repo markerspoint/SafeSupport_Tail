@@ -87,12 +87,9 @@
                         <tr class="hover:bg-gray-50 transition">
                             <td class="px-4 py-2">
                                 <div class="flex items-center space-x-3">
-                                    <!-- Avatar -->
                                     <div class="w-10 h-10 overflow-hidden border border-gray-200 rounded-full">
                                         <img :src="appointment.user.avatar_url" :alt="appointment.user.name" class="object-cover w-full h-full" />
                                     </div>
-
-                                    <!-- Name + Email -->
                                     <div class="flex flex-col">
                                         <span x-text="appointment.user.name" class="text-gray-700 font-medium"></span>
                                         <span x-text="appointment.user.email" class="text-xs text-gray-500"></span>
@@ -149,6 +146,11 @@
                     </template>
                 </tbody>
             </table>
+            <div class="mt-6 flex justify-center">
+                <ul class="flex space-x-6">
+                    {{ $appointments->links('pagination::tailwind') }}
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -193,8 +195,10 @@
             , date: ''
             , time: ''
             , searchQuery: ''
-            , statusFilter: ''
-            , filteredAppointments: @json($appointments),
+            , statusFilter: '',
+
+            appointments: @json($appointments -> items())
+            , filteredAppointments: @json($appointments -> items()),
 
             openRescheduleModal(id, date, time) {
                 this.appointmentId = id;
@@ -204,7 +208,7 @@
             },
 
             applyFilters() {
-                this.filteredAppointments = @json($appointments).filter(a => {
+                this.filteredAppointments = this.appointments.filter(a => {
                     const matchesStatus = this.statusFilter === '' || a.status === this.statusFilter;
                     const matchesSearch = a.user.name.toLowerCase().includes(this.searchQuery.toLowerCase());
                     return matchesStatus && matchesSearch;

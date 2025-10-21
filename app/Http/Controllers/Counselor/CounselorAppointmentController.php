@@ -16,7 +16,7 @@ class CounselorAppointmentController extends Controller
         $appointments = Appointment::with('user')
             ->where('counselor_id', $counselorId)
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(5);
 
         foreach ($appointments as $appointment) {
             $appointment->user->avatar_url = getUserAvatarUrl($appointment->user);
