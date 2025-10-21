@@ -49,120 +49,100 @@
     </div> --}}
 
 
-<div class="bg-white border border-gray-200 rounded-2xl p-4 custom-shadow">
-    <div class="flex items-center justify-between mb-4">
-        <h2 class="text-gray-700 font-semibold text-lg">Appointments</h2>
-        <div class="flex space-x-2" x-data="{ statusFilter: '' }">
-            <button 
-                @click="statusFilter = ''; applyFilters()" 
-                :class="{ 'bg-emerald-500 text-white': statusFilter === '', 'bg-gray-100 text-gray-700': statusFilter !== '' }" 
-                class="px-3 py-1 text-sm font-medium rounded-full transition"
-            >
-                All Statuses
-            </button>
-            <button 
-                @click="statusFilter = 'upcoming'; applyFilters()" 
-                :class="{ 'bg-emerald-500 text-white': statusFilter === 'upcoming', 'bg-gray-100 text-gray-700': statusFilter !== 'upcoming' }" 
-                class="px-3 py-1 text-sm font-medium rounded-full transition"
-            >
-                Upcoming
-            </button>
-            <button 
-                @click="statusFilter = 'past'; applyFilters()" 
-                :class="{ 'bg-emerald-500 text-white': statusFilter === 'past', 'bg-gray-100 text-gray-700': statusFilter !== 'past' }" 
-                class="px-3 py-1 text-sm font-medium rounded-full transition"
-            >
-                Past
-            </button>
-            <button 
-                @click="statusFilter = 'cancelled'; applyFilters()" 
-                :class="{ 'bg-emerald-500 text-white': statusFilter === 'cancelled', 'bg-gray-100 text-gray-700': statusFilter !== 'cancelled' }" 
-                class="px-3 py-1 text-sm font-medium rounded-full transition"
-            >
-                Cancelled
-            </button>
-            <button 
-                @click="statusFilter = 'pending'; applyFilters()" 
-                :class="{ 'bg-emerald-500 text-white': statusFilter === 'pending', 'bg-gray-100 text-gray-700': statusFilter !== 'pending' }" 
-                class="px-3 py-1 text-sm font-medium rounded-full transition"
-            >
-                Pending
-            </button>
+    <div class="bg-white border border-gray-200 rounded-2xl p-4 custom-shadow">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-gray-700 font-semibold text-lg">Appointments</h2>
+            <div class="flex space-x-2" x-data="{ statusFilter: '' }">
+                <button @click="statusFilter = ''; applyFilters()" :class="{ 'bg-emerald-500 text-white': statusFilter === '', 'bg-gray-100 text-gray-700': statusFilter !== '' }" class="px-3 py-1 text-sm font-medium rounded-full transition">
+                    All Statuses
+                </button>
+                <button @click="statusFilter = 'upcoming'; applyFilters()" :class="{ 'bg-emerald-500 text-white': statusFilter === 'upcoming', 'bg-gray-100 text-gray-700': statusFilter !== 'upcoming' }" class="px-3 py-1 text-sm font-medium rounded-full transition">
+                    Upcoming
+                </button>
+                <button @click="statusFilter = 'past'; applyFilters()" :class="{ 'bg-emerald-500 text-white': statusFilter === 'past', 'bg-gray-100 text-gray-700': statusFilter !== 'past' }" class="px-3 py-1 text-sm font-medium rounded-full transition">
+                    Past
+                </button>
+                <button @click="statusFilter = 'cancelled'; applyFilters()" :class="{ 'bg-emerald-500 text-white': statusFilter === 'cancelled', 'bg-gray-100 text-gray-700': statusFilter !== 'cancelled' }" class="px-3 py-1 text-sm font-medium rounded-full transition">
+                    Cancelled
+                </button>
+                <button @click="statusFilter = 'pending'; applyFilters()" :class="{ 'bg-emerald-500 text-white': statusFilter === 'pending', 'bg-gray-100 text-gray-700': statusFilter !== 'pending' }" class="px-3 py-1 text-sm font-medium rounded-full transition">
+                    Pending
+                </button>
+            </div>
         </div>
-    </div>
-    <hr>
-    <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead>
-                <tr class="">
-                    <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Student</th>
-                    <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Date</th>
-                    <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Time</th>
-                    <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Status</th>
-                    <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-                <template x-for="appointment in filteredAppointments" :key="appointment.id">
-                    <tr class="hover:bg-gray-50 transition">
-                        <td class="px-4 py-2">
-                            <div class="flex flex-col">
-                                <span x-text="appointment.user.name" class="text-gray-700"></span>
-                                <span x-text="appointment.user.email" class="text-xs text-gray-500"></span>
-                            </div>
-                        </td>
-                        <td class="px-4 py-2 text-gray-700" x-text="new Date(appointment.date).toLocaleDateString('en-US',{day:'2-digit',month:'short',year:'numeric'})"></td>
-                        <td class="px-4 py-2 text-gray-700" x-text="new Date('1970-01-01T'+appointment.time).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', hour12:true})"></td>
-                        <td class="px-4 py-2 capitalize">
-                            <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full shadow-sm" :class="{
+        <hr>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead>
+                    <tr class="">
+                        <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Student</th>
+                        <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Date</th>
+                        <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Time</th>
+                        <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Status</th>
+                        <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <template x-for="appointment in filteredAppointments" :key="appointment.id">
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-2">
+                                <div class="flex flex-col">
+                                    <span x-text="appointment.user.name" class="text-gray-700"></span>
+                                    <span x-text="appointment.user.email" class="text-xs text-gray-500"></span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-2 text-gray-700" x-text="new Date(appointment.date).toLocaleDateString('en-US',{day:'2-digit',month:'short',year:'numeric'})"></td>
+                            <td class="px-4 py-2 text-gray-700" x-text="new Date('1970-01-01T'+appointment.time).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', hour12:true})"></td>
+                            <td class="px-4 py-2 capitalize">
+                                <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full shadow-sm" :class="{
                                     'bg-[#A7F3D0] text-gray-800': appointment.status==='upcoming',
                                     'bg-gray-100 text-gray-700': appointment.status==='past',
                                     'bg-red-100 text-red-700': appointment.status==='cancelled',
                                     'bg-[#6EE7B7] text-gray-800': appointment.status==='pending'
                                 }" x-text="appointment.status">
-                            </span>
-                        </td>
-                        <td class="px-4 py-2 flex flex-wrap gap-2">
-                            <template x-if="appointment.status==='pending'">
-                                <form :action="`/counselor/appointments/${appointment.id}/status`" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="status" value="upcoming">
-                                    <button type="submit" class="bg-[#6EE7B7] text-gray-800 p-2 rounded-full hover:bg-[#34D399] transition" title="Accept">
-                                        <img src="{{ asset('img/icons/check-circle.svg') }}" class="w-5 h-5" alt="Accept">
+                                </span>
+                            </td>
+                            <td class="px-4 py-2 flex flex-wrap gap-2">
+                                <template x-if="appointment.status==='pending'">
+                                    <form :action="'{{ url('counselor/appointments') }}/' + appointment.id + '/status'" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="status" value="upcoming">
+                                        <button type="submit" class="bg-[#6EE7B7] text-gray-800 p-2 rounded-full hover:bg-[#34D399] transition" title="Accept">
+                                            <img src="{{ asset('img/icons/check-circle.svg') }}" class="w-5 h-5" alt="Accept">
+                                        </button>
+                                    </form>
+                                </template>
+                                <template x-if="appointment.status==='pending'">
+                                    <form :action="'{{ url('counselor/appointments') }}/' + appointment.id + '/status'" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="status" value="cancelled">
+                                        <button type="submit" class="bg-red-400 text-white p-2 rounded-full hover:bg-red-700 transition" title="Reject">
+                                            <img src="{{ asset('img/icons/x-circle.svg') }}" class="w-5 h-5" alt="Reject">
+                                        </button>
+                                    </form>
+                                </template>
+                                <template x-if="appointment.status!=='cancelled' && appointment.status!=='past'">
+                                    <button @click="$nextTick(() => openRescheduleModal(appointment.id, appointment.date, appointment.time))" class="bg-[#6EE7B7] text-gray-800 p-2 rounded-full hover:bg-[#34D399] transition" title="Reschedule">
+                                        <img src="{{ asset('img/icons/repeat.svg') }}" class="w-5 h-5" alt="Reschedule">
                                     </button>
-                                </form>
-                            </template>
-                            <template x-if="appointment.status==='pending'">
-                                <form :action="`/counselor/appointments/${appointment.id}/status`" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="status" value="cancelled">
-                                    <button type="submit" class="bg-red-400 text-white p-2 rounded-full hover:bg-red-700 transition" title="Reject">
-                                        <img src="{{ asset('img/icons/x-circle.svg') }}" class="w-5 h-5" alt="Reject">
-                                    </button>
-                                </form>
-                            </template>
-                            <template x-if="appointment.status!=='cancelled' && appointment.status!=='past'">
-                                <button @click="$nextTick(() => openRescheduleModal(appointment.id, appointment.date, appointment.time))" class="bg-[#6EE7B7] text-gray-800 p-2 rounded-full hover:bg-[#34D399] transition" title="Reschedule">
-                                    <img src="{{ asset('img/icons/repeat.svg') }}" class="w-5 h-5" alt="Reschedule">
-                                </button>
-                            </template>
-                        </td>
-                    </tr>
-                </template>
-                <template x-if="filteredAppointments.length === 0">
-                    <tr>
-                        <td colspan="5" class="px-4 py-8 text-center text-gray-400">
-                            <svg class="w-12 h-12 mx-auto text-gray-300 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            </svg>
-                            <span class="block text-sm">No appointments found</span>
-                        </td>
-                    </tr>
-                </template>
-            </tbody>
-        </table>
+                                </template>
+                            </td>
+                        </tr>
+                    </template>
+                    <template x-if="filteredAppointments.length === 0">
+                        <tr>
+                            <td colspan="5" class="px-4 py-8 text-center text-gray-400">
+                                <svg class="w-12 h-12 mx-auto text-gray-300 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                                <span class="block text-sm">No appointments found</span>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
     <!-- Reschedule Modal -->
     <template x-if="open">

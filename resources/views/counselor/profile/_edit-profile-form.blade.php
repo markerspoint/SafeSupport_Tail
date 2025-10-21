@@ -1,4 +1,4 @@
-<div class="space-y-6">
+<div class="space-y-6" x-data="{ selectedAvatar: '{{ old('avatar', auth()->user()->avatar) }}' }">
     <form action="{{ route('counselor.profile.update') }}" method="POST">
         @csrf
         @method('PUT')
@@ -16,7 +16,7 @@
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
         </div>
-        <div class="hidden">
+        <div>
             <label for="gender" class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
             <select name="gender" id="gender" required class="w-full border border-gray-200 rounded-md p-3 text-sm text-gray-600 bg-white focus:ring-gray-300 focus:border-gray-300 transition-colors">
                 <option value="" {{ old('gender', auth()->user()->gender) ? '' : 'selected' }} disabled>Select gender</option>
@@ -26,6 +26,36 @@
             @error('gender')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Select Avatar</label>
+            <div class="grid grid-cols-5 gap-3">
+                @php
+                    $folder = auth()->user()->gender === 'male' ? 'male' : 'female';
+                    $avatars = File::files(public_path("img/avatar/{$folder}"));
+                @endphp
+                @foreach ($avatars as $avatar)
+                    <label class="relative cursor-pointer">
+                        <input
+                            type="radio"
+                            name="avatar"
+                            value="{{ $avatar->getFilename() }}"
+                            x-model="selectedAvatar"
+                            class="sr-only"
+                            x-on:change="selectedAvatar = '{{ $avatar->getFilename() }}'"
+                        >
+                        <img
+                            src="{{ asset("img/avatar/{$folder}/{$avatar->getFilename()}") }}"
+                            alt="Avatar"
+                            class="w-full h-10 object-cover rounded-md border transition-all duration-200"
+                            :class="selectedAvatar === '{{ $avatar->getFilename() }}' ? 'border-blue-600 border-2 shadow-md' : 'border-gray-200 border hover:border-blue-300'"
+                        >
+                    </label>
+                @endforeach
+                @error('avatar')
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
         </div>
         <div>
             <label for="password" class="block text-sm font-medium text-gray-700 mb-2">New Password (optional)</label>

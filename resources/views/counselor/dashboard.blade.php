@@ -135,7 +135,11 @@
                         <td class="px-4 py-2">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 overflow-hidden border border-gray-200 rounded-full">
-                                    <img src="{{ getUserAvatarUrl(auth()->user()) }}" alt="{{ auth()->user()->name }}" class="object-cover w-full h-full" />
+                                    <img 
+                                        src="{{ getUserAvatarUrl($appointment->user) }}" 
+                                        alt="{{ $appointment->user->name }}" 
+                                        class="object-cover w-full h-full" 
+                                    />
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="text-gray-700">{{ $appointment->user->name }}</span>

@@ -53,6 +53,7 @@ Route::middleware('auth')->prefix('student')->group(function () {
     Route::get('/profile', [StudentProfileController::class, 'show'])->name('student.profile');
     Route::get('/profile/edit', [StudentProfileController::class, 'edit'])->name('student.profile.edit');
     Route::put('/profile', [StudentProfileController::class, 'update'])->name('student.profile.update');
+    Route::get('/avatars', [StudentProfileController::class, 'getAvatars']);
 
     // Resources Routes
     Route::get('/resources/videos', [ResourceController::class, 'videos'])->name('student.resources.videos');
@@ -65,17 +66,32 @@ Route::middleware('auth')->prefix('counselor')->group(function () {
     Route::get('/dashboard', [CounselorDashboard::class, 'dashboard'])->name('counselor.dashboard');
     Route::get('/profile', [CounselorProfileController::class, 'profile'])->name('counselor.profile');
     Route::put('/profile', [CounselorProfileController::class, 'update'])->name('counselor.profile.update');
+    Route::get('/avatars', [CounselorProfileController::class, 'getAvatars']);
 
     Route::get('/appointments', [CounselorAppointmentController::class, 'index'])->name('counselor.appointment');
     Route::post('/appointments/{appointment}/status', [CounselorAppointmentController::class, 'updateStatus'])->name('counselor.appointments.status');
-    Route::post('/appointments/{appointment}/reschedule', [CounselorAppointmentController::class, 'reschedule'])->name('counselor.appointments.reschedule');
+    Route::post('/appointments/{appointment}/reschedule', [CounselorAppointmentController::class, 'reschedule'])->name('counselor.appointment.reschedule');
 
+    // Articles
     Route::get('/resources/articles', [CounselorResourceController::class, 'articles'])->name('counselor.resources.articles');
+    Route::get('/resources/articles/{id}', [CounselorResourceController::class, 'showArticle'])->name('counselor.resources.articles.show');
     Route::post('/resources/articles', [CounselorResourceController::class, 'storeArticle'])->name('counselor.resources.articles.store');
+    Route::put('/resources/articles/{id}', [CounselorResourceController::class, 'updateArticle'])->name('counselor.resources.articles.update');
+    Route::delete('/resources/articles/{id}', [CounselorResourceController::class, 'destroyArticle'])->name('counselor.resources.articles.destroy');
+
+    // Self-Help Tools
     Route::get('/resources/self-help', [CounselorResourceController::class, 'selfHelp'])->name('counselor.resources.self-help');
+    Route::get('/resources/self-help/{id}', [CounselorResourceController::class, 'showSelfHelp'])->name('counselor.resources.self-help.show');
     Route::post('/resources/self-help', [CounselorResourceController::class, 'storeSelfHelp'])->name('counselor.resources.self-help.store');
+    Route::put('/resources/self-help/{id}', [CounselorResourceController::class, 'updateSelfHelp'])->name('counselor.resources.self-help.update');
+    Route::delete('/resources/self-help/{id}', [CounselorResourceController::class, 'destroySelfHelp'])->name('counselor.resources.self-help.destroy');
+
+    // Videos
     Route::get('/resources/videos', [CounselorResourceController::class, 'videos'])->name('counselor.resources.videos');
+    Route::get('/resources/videos/{id}', [CounselorResourceController::class, 'showVideo'])->name('counselor.resources.videos.show');
     Route::post('/resources/videos', [CounselorResourceController::class, 'storeVideo'])->name('counselor.resources.videos.store');
+    Route::put('/resources/videos/{id}', [CounselorResourceController::class, 'updateVideo'])->name('counselor.resources.videos.update');
+    Route::delete('/resources/videos/{id}', [CounselorResourceController::class, 'destroyVideo'])->name('counselor.resources.videos.destroy');
 
     Route::get('/schedule', [CounselorScheduleController::class, 'index'])->name('counselor.schedule');
     Route::get('/schedules', [CounselorScheduleController::class, 'fetch'])->name('counselor.schedules.fetch');

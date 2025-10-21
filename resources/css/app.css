@@ -4,11 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "flowbite/src/themes/default";
-@plugin "flowbite/plugin";
-@source "../../node_modules/flowbite";
-@import './calendar.css';
+@import 'flowbite/dist/flowbite.css';
 
+@import './calendar.css';
 
 /* custom shadow for cards */
 .custom-shadow {
@@ -27,4 +25,3 @@
     0% { background-position: 0 0; }   
     100% { background-position: -200px -200px; } 
 }
-

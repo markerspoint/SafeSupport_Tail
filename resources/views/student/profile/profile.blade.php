@@ -34,7 +34,6 @@
                         </div>
                     </div>
                     <div class="flex items-center order-2 gap-2 grow xl:order-3 xl:justify-end">
-                        <!-- Social Media Buttons (Placeholders) -->
                         <button class="flex h-11 w-11 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 hover:text-gray-800">
                             <img src="{{ asset('img/icons/facebook.svg') }}" alt="facebook-logo">
                         </button>
@@ -88,8 +87,8 @@
         </div>
 
         <!-- Edit Profile Modal -->
-        <div x-show="isProfileModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <div x-show="isProfileModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md max-h-[80vh] overflow-y-auto">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold text-pine-900">Edit Profile</h2>
                     <button x-on:click="isProfileModal = false" class="text-gray-600 hover:text-gray-800">

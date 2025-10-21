@@ -20,24 +20,22 @@ class CounselorAppointmentController extends Controller
         return view('counselor.appointment', compact('appointments'));
     }
 
-    public function updateStatus(Request $request, Appointment $appointment)
-    {
-        $request->validate([
-            'status' => 'required|in:upcoming,cancelled'
-        ]);
+        public function updateStatus(Request $request, Appointment $appointment)
+        {
+            \Log::info('updateStatus called', ['appointment_id' => $appointment->id, 'status' => $request->status]);
+            $request->validate([
+                'status' => 'required|in:upcoming,cancelled'
+            ]);
 
-        // Ensure the appointment belongs to the counselor
-        if ($appointment->counselor_id !== auth()->id()) {
-            return redirect()->route('counselor.appointment')->with('error', 'Unauthorized action.');
+            if ($appointment->counselor_id !== auth()->id()) {
+                \Log::warning('Unauthorized action for appointment: ' . $appointment->id);
+                return redirect()->route('counselor.appointment')->with('error', 'Unauthorized action.');
+            }
+
+            $appointment->update(['status' => $request->status]);
+            $message = $request->status === 'upcoming' ? 'Appointment accepted successfully.' : 'Appointment rejected successfully.';
+            return redirect()->route('counselor.appointment')->with('success', $message);
         }
-
-        $appointment->update([
-            'status' => $request->status
-        ]);
-
-        $message = $request->status === 'upcoming' ? 'Appointment accepted successfully.' : 'Appointment rejected successfully.';
-        return redirect()->route('counselor.appointment')->with('success', $message);
-    }
 
     public function reschedule(Request $request, Appointment $appointment)
     {

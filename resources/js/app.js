@@ -1,64 +1,50 @@
-import "./bootstrap";
-
-import Alpine from "alpinejs";
+import './bootstrap';
+import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 Alpine.start();
 
-import Chart from "chart.js/auto";
+import Chart from 'chart.js/auto';
 window.Chart = Chart;
 
-import { Modal } from 'flowbite/dist/flowbite';
+import { Modal, Dropdown } from 'flowbite';
+import { DataTable } from 'simple-datatables';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-window.Flowbite = { Modal };
+console.log('app.js loaded with Flowbite and simple-datatables'); // Debug
+
+window.Flowbite = { Modal, Dropdown };
+window.DataTable = DataTable;
 window.FullCalendar = { Calendar, dayGridPlugin, timeGridPlugin, interactionPlugin };
 
-
-
-
-// Sidebar master layout toggle
+// Sidebar toggle (unchanged)
 const sidebar = document.getElementById("sidebar");
 const toggleBtn = document.getElementById("sidebarToggle");
 
-// Function to toggle sidebar state
 function toggleSidebar(collapse) {
     sidebar.classList.toggle("w-20", collapse);
     sidebar.classList.toggle("w-64", !collapse);
-
-    // Hide/show only the text
     sidebar.querySelectorAll(".menu-text, .logo-text").forEach((el) => {
         el.classList.toggle("hidden", collapse);
     });
-
-    // Center icons when collapsed
     sidebar.querySelectorAll("a").forEach((el) => {
         el.classList.toggle("justify-center", collapse);
     });
 }
 
-// Manual toggle on button click
 toggleBtn.addEventListener("click", () => {
     toggleSidebar(sidebar.classList.contains("w-64"));
 });
 
-// Automatic toggle based on screen size
-const mediaQuery = window.matchMedia("(max-width: 640px)"); // Tailwind's 'sm' breakpoint
-
+const mediaQuery = window.matchMedia("(max-width: 640px)");
 function handleScreenSize(e) {
     if (e.matches) {
-        // Collapse sidebar on small screens
         toggleSidebar(true);
     } else {
-        // Expand sidebar on larger screens
         toggleSidebar(false);
     }
 }
-
-// Run on initial load
 handleScreenSize(mediaQuery);
-
-// Listen for screen size changes
 mediaQuery.addEventListener("change", handleScreenSize);

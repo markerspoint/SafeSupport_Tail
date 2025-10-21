@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -27,6 +28,7 @@ class StudentProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id())],
             'gender' => ['required', Rule::in(['male', 'female'])],
+            'avatar' => ['nullable', 'string'],
             'password' => ['nullable', 'confirmed', 'min:8'],
         ]);
 
@@ -38,21 +40,37 @@ class StudentProfileController extends Controller
             'gender' => $request->gender,
         ];
 
-        if ($request->filled('password')) {
-            $updateData['password'] = Hash::make($request->password);
+        // Handle avatar update
+        if ($request->filled('avatar')) {
+            $folder = $request->gender === 'male' ? 'male' : 'female';
+            $avatarPath = public_path("img/avatar/{$folder}/{$request->avatar}");
+            if (File::exists($avatarPath)) {
+                $updateData['avatar'] = $request->avatar;
+            } else {
+                $updateData['avatar'] = null;
+            }
+        } elseif ($user->gender !== $request->gender) {
+            // Reset avatar if gender changes and no avatar is selected
+            $updateData['avatar'] = null;
         }
 
-        if ($user->gender !== $request->gender) {
-            $genderMap = [
-                'male' => 'boy',
-                'female' => 'girl',
-            ];
-            $gender = $request->gender ? ($genderMap[$request->gender] ?? 'boy') : 'boy';
-            $updateData['avatar'] = "https://avatar.iran.liara.run/public/{$gender}?seed={$user->id}";
+        if ($request->filled('password')) {
+            $updateData['password'] = Hash::make($request->password);
         }
 
         $user->update($updateData);
 
         return redirect()->route('student.profile')->with('success', 'Profile updated successfully.');
+    }
+
+    /**
+     * Fetch avatars for the given gender.
+     */
+    public function getAvatars(Request $request)
+    {
+        $gender = $request->query('gender', 'male');
+        $folder = in_array($gender, ['male', 'female']) ? $gender : 'male';
+        $avatars = File::files(public_path("img/avatar/{$folder}"));
+        return response()->json(array_map(fn($file) => $file->getFilename(), $avatars));
     }
 }

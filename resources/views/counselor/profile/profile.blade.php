@@ -88,8 +88,8 @@
         </div>
 
         <!-- Edit Profile Modal -->
-        <div x-show="isProfileModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <div x-show="isProfileModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md max-h-[80vh] overflow-y-auto">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold text-pine-900">Edit Profile</h2>
                     <button x-on:click="isProfileModal = false" class="text-gray-600 hover:text-gray-800">
