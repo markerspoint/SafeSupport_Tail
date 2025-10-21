@@ -86,20 +86,28 @@
                     <template x-for="appointment in filteredAppointments" :key="appointment.id">
                         <tr class="hover:bg-gray-50 transition">
                             <td class="px-4 py-2">
-                                <div class="flex flex-col">
-                                    <span x-text="appointment.user.name" class="text-gray-700"></span>
-                                    <span x-text="appointment.user.email" class="text-xs text-gray-500"></span>
+                                <div class="flex items-center space-x-3">
+                                    <!-- Avatar -->
+                                    <div class="w-10 h-10 overflow-hidden border border-gray-200 rounded-full">
+                                        <img :src="appointment.user.avatar_url" :alt="appointment.user.name" class="object-cover w-full h-full" />
+                                    </div>
+
+                                    <!-- Name + Email -->
+                                    <div class="flex flex-col">
+                                        <span x-text="appointment.user.name" class="text-gray-700 font-medium"></span>
+                                        <span x-text="appointment.user.email" class="text-xs text-gray-500"></span>
+                                    </div>
                                 </div>
                             </td>
                             <td class="px-4 py-2 text-gray-700" x-text="new Date(appointment.date).toLocaleDateString('en-US',{day:'2-digit',month:'short',year:'numeric'})"></td>
                             <td class="px-4 py-2 text-gray-700" x-text="new Date('1970-01-01T'+appointment.time).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', hour12:true})"></td>
                             <td class="px-4 py-2 capitalize">
                                 <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full shadow-sm" :class="{
-                                    'bg-[#A7F3D0] text-gray-800': appointment.status==='upcoming',
-                                    'bg-gray-100 text-gray-700': appointment.status==='past',
-                                    'bg-red-100 text-red-700': appointment.status==='cancelled',
-                                    'bg-[#6EE7B7] text-gray-800': appointment.status==='pending'
-                                }" x-text="appointment.status">
+                                'bg-[#A7F3D0] text-gray-800': appointment.status==='upcoming',
+                                'bg-gray-100 text-gray-700': appointment.status==='past',
+                                'bg-red-100 text-red-700': appointment.status==='cancelled',
+                                'bg-[#6EE7B7] text-gray-800': appointment.status==='pending'
+                            }" x-text="appointment.status">
                                 </span>
                             </td>
                             <td class="px-4 py-2 flex flex-wrap gap-2">

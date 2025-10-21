@@ -12,30 +12,36 @@ class CounselorAppointmentController extends Controller
     public function index()
     {
         $counselorId = auth()->id();
+
         $appointments = Appointment::with('user')
             ->where('counselor_id', $counselorId)
             ->orderBy('created_at', 'desc')
             ->get();
 
+        foreach ($appointments as $appointment) {
+            $appointment->user->avatar_url = getUserAvatarUrl($appointment->user);
+        }
+
         return view('counselor.appointment', compact('appointments'));
     }
 
-        public function updateStatus(Request $request, Appointment $appointment)
-        {
-            \Log::info('updateStatus called', ['appointment_id' => $appointment->id, 'status' => $request->status]);
-            $request->validate([
-                'status' => 'required|in:upcoming,cancelled'
-            ]);
 
-            if ($appointment->counselor_id !== auth()->id()) {
-                \Log::warning('Unauthorized action for appointment: ' . $appointment->id);
-                return redirect()->route('counselor.appointment')->with('error', 'Unauthorized action.');
-            }
+    public function updateStatus(Request $request, Appointment $appointment)
+    {
+        \Log::info('updateStatus called', ['appointment_id' => $appointment->id, 'status' => $request->status]);
+        $request->validate([
+            'status' => 'required|in:upcoming,cancelled'
+        ]);
 
-            $appointment->update(['status' => $request->status]);
-            $message = $request->status === 'upcoming' ? 'Appointment accepted successfully.' : 'Appointment rejected successfully.';
-            return redirect()->route('counselor.appointment')->with('success', $message);
+        if ($appointment->counselor_id !== auth()->id()) {
+            \Log::warning('Unauthorized action for appointment: ' . $appointment->id);
+            return redirect()->route('counselor.appointment')->with('error', 'Unauthorized action.');
         }
+
+        $appointment->update(['status' => $request->status]);
+        $message = $request->status === 'upcoming' ? 'Appointment accepted successfully.' : 'Appointment rejected successfully.';
+        return redirect()->route('counselor.appointment')->with('success', $message);
+    }
 
     public function reschedule(Request $request, Appointment $appointment)
     {
