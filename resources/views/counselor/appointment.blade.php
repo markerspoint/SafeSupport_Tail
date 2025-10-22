@@ -32,27 +32,10 @@
         </div>
     </div>
 
-    {{-- <div class="border border-gray-200 rounded-2xl p-4 mb-4 custom-shadow">
-        <h3 class="text-gray-700 font-medium mb-2">Filter Appointments</h3>
-        <div class="flex space-x-2">
-            <select class="border rounded-md px-2 py-1 text-sm" x-model="statusFilter" @change="applyFilters">
-                <option class="rounded-md" value="">All Statuses</option>
-                <option value="upcoming">Upcoming</option>
-                <option value="past">Past</option>
-                <option value="cancelled">Cancelled</option>
-                <option value="pending">Pending</option>
-            </select>
-            <button class="bg-[#6EE7B7] text-gray-800 px-3 py-1 rounded-md hover:bg-[#34D399] transition text-sm" @click="applyFilters">
-                Apply Filters
-            </button>
-        </div>
-    </div> --}}
-
-
     <div class="bg-white border border-gray-200 rounded-2xl p-4 custom-shadow">
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-gray-700 font-semibold text-lg">Appointments</h2>
-            <div class="flex space-x-2" x-data="{ statusFilter: '' }">
+            <div class="flex space-x-2">
                 <button @click="statusFilter = ''; applyFilters()" :class="{ 'bg-emerald-500 text-white': statusFilter === '', 'bg-gray-100 text-gray-700': statusFilter !== '' }" class="px-3 py-1 text-sm font-medium rounded-full transition">
                     All Statuses
                 </button>
@@ -74,7 +57,7 @@
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead>
-                    <tr class="">
+                    <tr>
                         <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Student</th>
                         <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Date</th>
                         <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Time</th>
@@ -96,35 +79,27 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-4 py-2 text-gray-700" x-text="new Date(appointment.date).toLocaleDateString('en-US',{day:'2-digit',month:'short',year:'numeric'})"></td>
-                            <td class="px-4 py-2 text-gray-700" x-text="new Date('1970-01-01T'+appointment.time).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', hour12:true})"></td>
+                            <td class="px-4 py-2 text-gray-700" x-text="new Date(appointment.date).toLocaleDateString('en-US', {day: '2-digit', month: 'short', year: 'numeric'})"></td>
+                            <td class="px-4 py-2 text-gray-700" x-text="new Date('1970-01-01T' + appointment.time).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true})"></td>
                             <td class="px-4 py-2 capitalize">
                                 <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full shadow-sm" :class="{
-                                'bg-[#A7F3D0] text-gray-800': appointment.status==='upcoming',
-                                'bg-gray-100 text-gray-700': appointment.status==='past',
-                                'bg-red-100 text-red-700': appointment.status==='cancelled',
-                                'bg-[#6EE7B7] text-gray-800': appointment.status==='pending'
-                            }" x-text="appointment.status">
+                                    'bg-[#A7F3D0] text-gray-800': appointment.status === 'upcoming',
+                                    'bg-gray-100 text-gray-700': appointment.status === 'past',
+                                    'bg-red-100 text-red-700': appointment.status === 'cancelled',
+                                    'bg-[#6EE7B7] text-gray-800': appointment.status === 'pending'
+                                }" x-text="appointment.status">
                                 </span>
                             </td>
                             <td class="px-4 py-2 flex flex-wrap gap-2">
-                                <template x-if="appointment.status==='pending'">
-                                    <form :action="'{{ url('counselor/appointments') }}/' + appointment.id + '/status'" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="status" value="upcoming">
-                                        <button type="submit" class="bg-[#6EE7B7] text-gray-800 p-2 rounded-full hover:bg-[#34D399] transition" title="Accept">
-                                            <img src="{{ asset('img/icons/check-circle.svg') }}" class="w-5 h-5" alt="Accept">
-                                        </button>
-                                    </form>
+                                <template x-if="appointment.status === 'pending'">
+                                    <button @click="openApproveModal(appointment.id)" class="bg-[#6EE7B7] text-gray-800 p-2 rounded-full hover:bg-[#34D399] transition" title="Accept">
+                                        <img src="{{ asset('img/icons/check-circle.svg') }}" class="w-5 h-5" alt="Accept">
+                                    </button>
                                 </template>
-                                <template x-if="appointment.status==='pending'">
-                                    <form :action="'{{ url('counselor/appointments') }}/' + appointment.id + '/status'" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="status" value="cancelled">
-                                        <button type="submit" class="bg-red-400 text-white p-2 rounded-full hover:bg-red-700 transition" title="Reject">
-                                            <img src="{{ asset('img/icons/x-circle.svg') }}" class="w-5 h-5" alt="Reject">
-                                        </button>
-                                    </form>
+                                <template x-if="appointment.status === 'pending'">
+                                    <button @click="openRejectModal(appointment.id)" class="bg-red-400 text-white p-2 rounded-full hover:bg-red-700 transition" title="Reject">
+                                        <img src="{{ asset('img/icons/x-circle.svg') }}" class="w-5 h-5" alt="Reject">
+                                    </button>
                                 </template>
                                 <template x-if="appointment.status!=='cancelled' && appointment.status!=='past'">
                                     <button @click="$nextTick(() => openRescheduleModal(appointment.id, appointment.date, appointment.time))" class="bg-[#6EE7B7] text-gray-800 p-2 rounded-full hover:bg-[#34D399] transition" title="Reschedule">
@@ -183,6 +158,46 @@
         </div>
     </template>
 
+    <!-- Approve Modal -->
+    <div x-show="showApproveModal" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50" @click.away="showApproveModal = false">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
+            <h2 class="text-gray-700 font-semibold mb-4 text-lg">Confirm Approval</h2>
+            <p class="text-gray-600 mb-4">Are you sure you want to approve this appointment?</p>
+            <form method="POST" :action="'{{ url('counselor/appointments') }}/' + appointmentId + '/status'">
+                @csrf
+                <input type="hidden" name="status" value="upcoming">
+                <div class="flex justify-end space-x-2">
+                    <button type="button" @click="showApproveModal = false" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition text-sm font-medium">
+                        Cancel
+                    </button>
+                    <button type="submit" class="bg-[#6EE7B7] text-gray-800 px-4 py-2 rounded-md hover:bg-[#34D399] transition text-sm font-medium">
+                        Confirm
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Reject Modal -->
+    <div x-show="showRejectModal" class="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50" @click.away="showRejectModal = false">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
+            <h2 class="text-gray-700 font-semibold mb-4 text-lg">Confirm Rejection</h2>
+            <p class="text-gray-600 mb-4">Are you sure you want to reject this appointment?</p>
+            <form method="POST" :action="'{{ url('counselor/appointments') }}/' + appointmentId + '/status'">
+                @csrf
+                <input type="hidden" name="status" value="cancelled">
+                <div class="flex justify-end space-x-2">
+                    <button type="button" @click="showRejectModal = false" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition text-sm font-medium">
+                        Cancel
+                    </button>
+                    <button type="submit" class="bg-red-400 text-white px-4 py-2 rounded-md hover:bg-red-500 transition text-sm font-medium">
+                        Confirm
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </div>
 @endsection
 
@@ -190,15 +205,20 @@
 <script>
     function appointmentHandler() {
         return {
-            open: false
-            , appointmentId: null
-            , date: ''
-            , time: ''
-            , searchQuery: ''
-            , statusFilter: '',
+            open: false,
+            showApproveModal: false,
+            showRejectModal: false,
+            appointmentId: null,
+            date: '',
+            time: '',
+            searchQuery: '',
+            statusFilter: '',
+            appointments: @json($appointments->items()),
+            filteredAppointments: @json($appointments->items()),
 
-            appointments: @json($appointments -> items())
-            , filteredAppointments: @json($appointments -> items()),
+            init() {
+                // console.log('Appointment Handler Initialized', this.appointments);
+            },
 
             openRescheduleModal(id, date, time) {
                 this.appointmentId = id;
@@ -207,7 +227,22 @@
                 this.open = true;
             },
 
+            openApproveModal(id) {
+                console.log('Opening approve modal for ID:', id);
+                this.appointmentId = id;
+                this.showApproveModal = true;
+                // console.log('showApproveModal:', this.showApproveModal); 
+            },
+
+            openRejectModal(id) {
+                console.log('Opening reject modal for ID:', id);
+                this.appointmentId = id;
+                this.showRejectModal = true;
+                // console.log('showRejectModal:', this.showRejectModal); 
+            },
+
             applyFilters() {
+                console.log('Applying filters:', this.statusFilter, this.searchQuery);
                 this.filteredAppointments = this.appointments.filter(a => {
                     const matchesStatus = this.statusFilter === '' || a.status === this.statusFilter;
                     const matchesSearch = a.user.name.toLowerCase().includes(this.searchQuery.toLowerCase());
@@ -220,6 +255,5 @@
             }
         }
     }
-
 </script>
 @endpush

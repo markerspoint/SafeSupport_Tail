@@ -7,6 +7,7 @@ use App\Http\Controllers\AppointmentController;
 // student
 use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Student\ResourceController;
+use App\Http\Controllers\Student\StudentDashboardController;
 
 // counselor
 use App\Http\Controllers\Counselor\CounselorDashboard;
@@ -37,9 +38,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::middleware('auth')->prefix('student')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('student.dashboard');
-    })->name('student.dashboard');
+    Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
 
     Route::get('/appointments', [AppointmentController::class, 'index'])->name('student.appointments');
     Route::get('/appointments/book', [AppointmentController::class, 'create'])->name('student.appointments.book');
@@ -101,6 +100,6 @@ Route::middleware('auth')->prefix('counselor')->group(function () {
 }); 
 
 
-Route::get('/test-auth', function () {
-    return response()->json(['user' => Auth::check() ? Auth::user() : null]);
-});
+// Route::get('/test-auth', function () {
+//     return response()->json(['user' => Auth::check() ? Auth::user() : null]);
+// });

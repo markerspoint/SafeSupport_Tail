@@ -55,7 +55,7 @@
     @else
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($appointments as $appointment)
-        <div class="bg-white border border-gray-200 rounded-lg p-5 flex flex-col justify-between relative hover:scale-103 transition-transform duration-200">
+        <div class="bg-white border border-gray-200 rounded-lg p-5 custom-shadow flex flex-col justify-between relative hover:scale-103 transition-transform duration-200">
             <div class="relative z-10 pr-28">
                 <div class="flex items-center mb-2">
                     <svg class="w-5 h-5 text-teal-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
