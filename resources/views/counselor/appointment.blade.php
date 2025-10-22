@@ -121,10 +121,52 @@
                     </template>
                 </tbody>
             </table>
-            <div class="mt-6 flex justify-center">
-                <ul class="flex space-x-6">
-                    {{ $appointments->links('pagination::tailwind') }}
-                </ul>
+            {{-- pagination --}}
+            <div class="flex items-center justify-between w-full h-16 px-3 border-t border-neutral-200">
+                <p class="pl-2 text-sm text-gray-700">
+                    Showing <span class="font-medium">{{ $appointments->firstItem() }}</span> to 
+                    <span class="font-medium">{{ $appointments->lastItem() }}</span> of 
+                    <span class="font-medium">{{ $appointments->total() }}</span> results
+                </p>
+                <nav>
+                    <ul class="flex items-center text-sm leading-tight bg-white border divide-x rounded h-9 text-neutral-500 divide-neutral-200 border-neutral-200">
+                        
+                        {{-- Previous Page Link --}}
+                        <li class="h-full">
+                            @if($appointments->onFirstPage())
+                                <span class="relative inline-flex items-center h-full px-3 ml-0 rounded-l text-gray-300 cursor-not-allowed">Previous</span>
+                            @else
+                                <a href="{{ $appointments->previousPageUrl() }}" class="relative inline-flex items-center h-full px-3 ml-0 rounded-l group hover:text-neutral-900">Previous</a>
+                            @endif
+                        </li>
+
+                        {{-- Page Links --}}
+                        @foreach ($appointments->getUrlRange(1, $appointments->lastPage()) as $page => $url)
+                            @if ($page == $appointments->currentPage())
+                                <li class="hidden h-full md:block">
+                                    <span class="relative inline-flex items-center h-full px-3 text-neutral-900 group bg-gray-50">{{ $page }}</span>
+                                </li>
+                            @elseif ($page == 1 || $page == $appointments->lastPage() || ($page >= $appointments->currentPage() - 1 && $page <= $appointments->currentPage() + 1))
+                                <li class="hidden h-full md:block">
+                                    <a href="{{ $url }}" class="relative inline-flex items-center h-full px-3 group hover:text-neutral-900">{{ $page }}</a>
+                                </li>
+                            @elseif ($page == 2 && $appointments->currentPage() > 3)
+                                <li class="hidden h-full md:block"><div class="relative inline-flex items-center h-full px-2.5 group"><span>...</span></div></li>
+                            @elseif ($page == $appointments->lastPage() - 1 && $appointments->currentPage() < $appointments->lastPage() - 2)
+                                <li class="hidden h-full md:block"><div class="relative inline-flex items-center h-full px-2.5 group"><span>...</span></div></li>
+                            @endif
+                        @endforeach
+
+                        {{-- Next Page Link --}}
+                        <li class="h-full">
+                            @if($appointments->hasMorePages())
+                                <a href="{{ $appointments->nextPageUrl() }}" class="relative inline-flex items-center h-full px-3 rounded-r group hover:text-neutral-900">Next</a>
+                            @else
+                                <span class="relative inline-flex items-center h-full px-3 rounded-r text-gray-300 cursor-not-allowed">Next</span>
+                            @endif
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
