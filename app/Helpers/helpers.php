@@ -32,6 +32,6 @@ if (!function_exists('getUserAvatarUrl')) {
             }
         }
         // Fallback avatar
-        return asset('img/avatar/default.png');
+        return asset('img/icons/default-profile.png');
     }
 }

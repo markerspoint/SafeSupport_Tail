@@ -103,3 +103,8 @@ Route::middleware('auth')->prefix('counselor')->group(function () {
 // Route::get('/test-auth', function () {
 //     return response()->json(['user' => Auth::check() ? Auth::user() : null]);
 // });
+
+// Route::get('/proxy-youtube/{videoId}', function ($videoId) {
+//     $embedUrl = 'https://www.youtube.com/embed/' . $videoId . '?rel=0&modestbranding=1&autoplay=1';
+//     return redirect($embedUrl);
+// })->name('proxy.youtube');

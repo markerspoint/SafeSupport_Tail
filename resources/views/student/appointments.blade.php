@@ -10,7 +10,18 @@
     </div>
     @endif
     <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">Your Appointments</h1>
+        <h1 class="text-3xl font-bold text-gray-700 mb-4 sm:mb-0 flex items-center gap-3">
+            <svg class="w-7 h-7 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+                <circle cx="16" cy="16" r="3" />
+                <polyline points="16 14 16 16 18 16" />
+            </svg>
+            Your Appointments
+        </h1>
+
         <a href="{{ route('student.appointments.book') }}" class="mt-4 sm:mt-0 w-full sm:w-auto h-12 bg-gradient-to-r from-[#171717] to-[#2d2d2d] text-white rounded-lg px-6 py-3 text-sm font-medium hover:from-[#2d2d2d] hover:to-[#171717] transition-all duration-200 shadow-md hover:shadow-xl transform hover:-translate-y-0.5">
             Book New Appointment
         </a>
