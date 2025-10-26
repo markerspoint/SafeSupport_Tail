@@ -23,7 +23,7 @@
         this.navigationMenuOpen = false;
         this.navigationMenu = '';
     }
-}" class="sticky top-0 z-50 w-full bg-white border-b border-neutral-200 bg-white/60 backdrop-blur-md">
+}" class="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/40 backdrop-blur-md">
 
         <div class="flex items-center justify-between px-6 py-3">
 

@@ -116,7 +116,7 @@
                 </nav>
             </div>
 
-            <div x-data="{ open: false }" class="relative">
+            <div x-data="{ open: false }" class="relative z-50">
                 <button @click="open = !open" class="flex items-center space-x-2 text-pine-900 focus:outline-none">
                     <div class="w-10 h-10 overflow-hidden border border-gray-200 rounded-full">
                         <img src="{{ getUserAvatarUrl(auth()->user()) }}" alt="user" class="object-cover w-full h-full" />
