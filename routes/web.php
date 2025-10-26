@@ -27,11 +27,15 @@ use App\Http\Controllers\Counselor\CounselorScheduleController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 Route::get('/faqs', function () {
     return view('pages.faqs');
 })->name('faqs');
+Route::get('/about-us', function () {
+    return view('pages.about-us');
+})->name('about');
 
-Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);

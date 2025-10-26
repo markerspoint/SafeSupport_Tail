@@ -180,9 +180,11 @@
             <!-- Learn More Dropdown -->
             <div x-show="navigationMenu == 'learn-more'" class="flex justify-center items-stretch p-6 w-full">
                 <div class="w-72">
-                    <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                        <span class="block mb-1 font-medium text-black">Counselor Dashboard</span>
-                        <span class="block font-light leading-5 opacity-50">Manage appointments, view student progress, and provide support efficiently.</span>
+                    <a href="{{ route('about') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                        <span class="block mb-1 font-medium text-black">About Us</span>
+                        <span class="block font-light leading-5 opacity-50">
+                            Learn more about our mission, values, and the team behind SafeSupport.
+                        </span>
                     </a>
                     <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                         <span class="block mb-1 font-medium text-black">Student Resources</span>
