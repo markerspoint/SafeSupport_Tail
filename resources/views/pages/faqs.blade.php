@@ -16,11 +16,11 @@
         <div class="absolute inset-0 bg-white/70 z-0"></div>
 
         <div class="relative z-10">
-            <h1 class="text-[3rem] font-[650] text-center mb-2 text-green-800">
+            <h1 class="text-[2rem] font-[650] md:text-[2rem] lg:text-[3rem] text-center mb-2 text-green-800">
                 Frequently <span class="bg-gradient-to-r from-green-800 via-green-400 to-green-700 bg-clip-text text-transparent">Asked</span> Questions
             </h1>
 
-            <p class="text-[1.1rem] font-[600] text-center text-green-800 mb-[2rem]">Everything you need to know about using SafeSupport</p>
+            <p class="text-[0.8rem] md:text-[1rem] lg:text-[1.1rem] font-[600] text-center text-green-800 mb-[2rem]">Everything you need to know about using SafeSupport</p>
         </div>
 
         <div x-data="{ 
@@ -28,7 +28,7 @@
     setActiveAccordion(id) { 
         this.activeAccordion = (this.activeAccordion == id) ? '' : id 
     } 
-}" class="relative w-full max-w-[34rem] mx-auto text-[1.1rem] py-5 px-5 mb-6 space-y-3 bg-transparent border border-gray-200 rounded-2xl">
+}" class="relative w-[28rem] lg:w-[34rem] mx-auto text-[1.1rem] py-5 px-5 mb-6 space-y-3 bg-transparent border border-gray-200 rounded-2xl">
 
             <div class="flex items-center space-x-2 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-auto h-[2rem] pl-3 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -73,7 +73,7 @@
     setActiveAccordion(id) { 
         this.activeAccordion = (this.activeAccordion == id) ? '' : id 
     } 
-}" class="relative w-full max-w-[34rem] mx-auto text-[1.1rem] py-5 px-5 mb-6 space-y-3 bg-transparent border border-gray-200 rounded-2xl">
+}" class="relative w-[28rem] lg:w-[34rem] mx-auto text-[1.1rem] py-5 px-5 mb-6 space-y-3 bg-transparent border border-gray-200 rounded-2xl">
 
             <div class="flex items-center space-x-2 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-auto h-[2rem] pl-3 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -158,13 +158,13 @@
             </div>
         </div>
 
-        <div class="flex justify-center w-full">
-            <div class="relative max-w-[50rem] w-full py-16 bg-gradient-to-r from-green-500 via-green-600 to-green-500 text-center text-white mt-10 rounded-2xl shadow-lg">
-                <h2 class="mb-4 text-3xl font-bold md:text-4xl">Still have questions?</h2>
-                <p class="mx-auto mb-8 max-w-2xl text-lg text-white/90">
+        <div class="flex justify-center z-10">
+            <div class="relative w-[27rem] sm:w-[30rem] md:w-[45rem] lg:w-[60rem] py-16 bg-[#2d6a4f] text-center text-white mt-4 rounded-2xl shadow-lg">
+                <h2 class="mb-4 text-[2rem] md:text-[2.25rem] lg:text-[2.5rem] font-bold">Still have questions?</h2>
+                <p class="mx-auto mb-8 px-[2rem] md:max-w-[36rem] lg:max-w-2xl text-[0.9rem] md:text-[1.1rem] lg:text-[1.3rem] text-white/90">
                     Can't find the answer you're looking for? Our team is here to help.
                 </p>
-                <x-button href="mailto:safesupport@gmail.com" class="!bg-green-500">
+                <x-button href="mailto:safesupport@gmail.com" class="inline-flex items-center px-6 py-3 !bg-green-500 border-b-4 border-green-600 transform transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
                     Contact Support
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1">
                         <path d="m9 18 6-6-6-6"></path>

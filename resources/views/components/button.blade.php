@@ -1,4 +1,4 @@
-@props(['text' => 'Click Me', 'href' => '#'])
+@props(['text' => '', 'href' => '#'])
 
 <a href="{{ $href }}" {{ $attributes->merge([
     'class' => 'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-all duration-200
