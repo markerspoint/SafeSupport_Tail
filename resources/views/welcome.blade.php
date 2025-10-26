@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ asset('img/safecenter-logo.png') }}" type="image/png">
 
     <title>{{ config('app.name', 'SafeSupport') }}</title>
 
@@ -16,174 +17,45 @@
         @apply font-sans !important;
     }
 
+    @keyframes floatUpDown {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+
+    .pill-animate {
+        animation: floatUpDown 3s ease-in-out infinite;
+    }
+
+    .pill-animate-delay {
+        animation: floatUpDown 3s ease-in-out infinite;
+        animation-delay: 1.5s;
+    }
+
+    /* @keyframes slideIn {
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    } */
+
 </style>
 
 <body>
-    {{-- nav --}}
-    <nav x-data="{
-    navigationMenuOpen: false,
-    mobileMenuOpen: false,
-    navigationMenu: '',
-    navigationMenuCloseDelay: 200,
-    navigationMenuCloseTimeout: null,
-    navigationMenuLeave() {
-        let that = this;
-        this.navigationMenuCloseTimeout = setTimeout(() => {
-            that.navigationMenuClose();
-        }, this.navigationMenuCloseDelay);
-    },
-    navigationMenuReposition(navElement) {
-        this.navigationMenuClearCloseTimeout();
-        this.$refs.navigationDropdown.style.left = navElement.offsetLeft + 'px';
-        this.$refs.navigationDropdown.style.marginLeft = (navElement.offsetWidth/2) + 'px';
-    },
-    navigationMenuClearCloseTimeout(){
-        clearTimeout(this.navigationMenuCloseTimeout);
-    },
-    navigationMenuClose(){
-        this.navigationMenuOpen = false;
-        this.navigationMenu = '';
-    }
-}" class="relative z-10 w-full bg-white border-b border-neutral-200">
 
-        <!-- Top bar: Logo + Navigation + Auth buttons -->
-        <div class="flex items-center justify-between px-6 py-3">
+    @include('partials.nav')
 
-            <!-- Left: Logo + SafeSupport name -->
-            <a href="/" class="flex items-center space-x-3">
-                <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-10 h-10 object-contain">
-                <span class="text-xl font-bold text-neutral-700">SafeSupport</span>
-            </a>
-
-            <!-- Desktop Navigation -->
-            <ul class="hidden md:flex space-x-2">
-                <li>
-                    <button :class="{ 'bg-neutral-100' : navigationMenu=='getting-started', 'hover:bg-neutral-100' : navigationMenu!='getting-started' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='getting-started'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md hover:text-neutral-900 transition-colors">
-                        Getting Started
-                        <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'getting-started' }" class="ml-1 h-3 w-3 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                </li>
-                <li>
-                    <button :class="{ 'bg-neutral-100' : navigationMenu=='learn-more', 'hover:bg-neutral-100' : navigationMenu!='learn-more' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='learn-more'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md hover:text-neutral-900 transition-colors">
-                        Learn More
-                        <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'learn-more' }" class="ml-1 h-3 w-3 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                </li>
-                <li>
-                    <a href="/documentation" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md hover:text-neutral-900 transition-colors">
-                        Documentation
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Desktop Auth Buttons -->
-            <div class="hidden md:flex space-x-3">
-                <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-medium text-black border border-neutral-200 rounded hover:bg-neutral-100">Sign In</a>
-                <a href="{{ route('register') }}" class="px-4 py-2 text-sm font-medium text-white bg-neutral-700 rounded hover:bg-neutral-900">Sign Up</a>
-            </div>
-
-            <!-- Mobile Hamburger -->
-            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-2 rounded-md focus:outline-none border border-neutral-200">
-                <svg x-show="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <svg x-show="mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div x-show="mobileMenuOpen" class="md:hidden border-t border-neutral-200" x-transition>
-            <ul class="flex flex-col p-4 space-y-2">
-                <li><a href="#" class="block px-3 py-2 rounded hover:bg-neutral-100">Getting Started</a></li>
-                <li><a href="#" class="block px-3 py-2 rounded hover:bg-neutral-100">Learn More</a></li>
-                <li><a href="/documentation" class="block px-3 py-2 rounded hover:bg-neutral-100">Documentation</a></li>
-            </ul>
-            <div class="flex flex-col p-4 space-y-2 border-t border-neutral-200">
-                <a href="/signin" class="block px-3 py-2 text-black border border-neutral-200 rounded hover:bg-neutral-100">Sign In</a>
-                <a href="/signup" class="block px-3 py-2 text-white bg-black rounded hover:bg-neutral-900">Sign Up</a>
-            </div>
-        </div>
-
-        <!-- Dropdown Menu (Desktop only) -->
-        <div x-ref="navigationDropdown" x-show="navigationMenuOpen" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" @mouseover="navigationMenuClearCloseTimeout()" @mouseleave="navigationMenuLeave()" class="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-20 hidden md:flex" x-cloak>
-            <!-- Your existing dropdown content here -->
-            <div class="flex overflow-hidden justify-center w-auto h-auto bg-white rounded-md border shadow-sm border-neutral-200/70">
-
-                <!-- Getting Started Dropdown -->
-                <div x-show="navigationMenu == 'getting-started'" class="flex gap-x-3 justify-center items-stretch p-6 w-full max-w-2xl">
-                    <div class="flex-shrink-0 pt-28 pb-7 w-48 bg-gradient-to-br to-black rounded from-neutral-800">
-                        <div class="relative px-7 space-y-1.5 text-white">
-                            <svg class="block w-auto h-9" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M67.683 89.217h44.634l30.9 53.218H36.783l30.9-53.218Z" fill="currentColor" />
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M77.478 120.522h21.913v46.956H77.478v-46.956Zm-34.434-29.74 45.59-78.26 46.757 78.26H43.044Z" fill="currentColor" />
-                            </svg>
-                            <span class="block font-sans font-bold">SafeSupport</span>
-                            <span class="block text-sm opacity-60">A user-friendly Booking System</span>
-                        </div>
-                    </div>
-                    <div class="w-72">
-                        <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Welcome to SafeSupport</span>
-                            <span class="block font-light leading-5 opacity-50">Your safe space for mental health resources and support.</span>
-                        </a>
-                        <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">How to Get Help</span>
-                            <span class="block leading-5 opacity-50">Easily book sessions with counselors or explore self-help resources.</span>
-                        </a>
-                        <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Contribute</span>
-                            <span class="block leading-5 opacity-50">Share mental health resources or volunteer your expertise with our community.</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Learn More Dropdown -->
-                <div x-show="navigationMenu == 'learn-more'" class="flex justify-center items-stretch p-6 w-full">
-                    <div class="w-72">
-                        <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Counselor Dashboard</span>
-                            <span class="block font-light leading-5 opacity-50">Manage appointments, view student progress, and provide support efficiently.</span>
-                        </a>
-                        <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Student Resources</span>
-                            <span class="block font-light leading-5 opacity-50">Access articles, videos, and self-help tools curated for mental wellness.</span>
-                        </a>
-                        <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">SafeSupport UI</span>
-                            <span class="block leading-5 opacity-50">Our clean, intuitive interface designed to make support easy and accessible.</span>
-                        </a>
-                    </div>
-                    <div class="w-72">
-                        <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Booking System</span>
-                            <span class="block font-light leading-5 opacity-50">Quickly schedule, reschedule, or cancel counseling sessions online.</span>
-                        </a>
-                        <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Community Support</span>
-                            <span class="block leading-5 opacity-50">Engage with peers and mentors in a safe and supportive environment.</span>
-                        </a>
-                        <a href="#_" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Guides & Tools</span>
-                            <span class="block leading-5 opacity-50">Practical guides and tools to help students maintain their mental wellness.</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    {{-- body --}}
-    <section class="bg-white hero-bg h-[90vh] w-full py-24">
-        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <!-- Big headline -->
+    {{-- hero section --}}
+    <section class="relative bg-white hero-bg min-h-[120vh] w-full py-24 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-20">
             <h1 class="mt-11 text-[2rem] sm:text-[3rem] md:text-[4rem] font-extrabold leading-tight 
-             bg-gradient-to-r from-black via-gray-400 to-black bg-clip-text text-transparent">
+        bg-gradient-to-r from-black via-gray-400 to-black bg-clip-text text-transparent">
                 Listen. Heal. Grow. Live.
             </h1>
 
@@ -194,14 +66,105 @@
             <a href="{{ route('login') }}" class="mt-6 inline-flex items-center justify-center px-7 py-4 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-700 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
                 Get Started
             </a>
+
+            @php
+            use App\Models\User;
+            $studentCount = User::where('role', 'student')->count();
+            @endphp
+
+            <div class="mt-8 flex justify-center space-x-4 relative z-20">
+                <span class="pill-animate inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-neutral-700 bg-neutral-100 rounded-full hover:shadow-green-lg hover:scale-105 transition-all duration-300">
+                    🎓 Join {{ number_format($studentCount) }}+ Students
+                </span>
+                <span class="pill-animate-delay inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-neutral-700 bg-neutral-100 rounded-full hover:shadow-green-lg hover:scale-105 transition-all duration-300">
+                    <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-5 h-5 object-contain">
+                    <span class="ml-2">Made for Students, by Students</span>
+                </span>
+            </div>
         </div>
 
-        <!-- Optional SVG / background container -->
+        <div x-data="{ offset: 0 }" x-init="window.addEventListener('scroll', () => { offset = window.scrollY * 0.3 })" class="absolute left-1/2 transform -translate-x-1/2 mt-12 z-30 w-full max-w-5xl pointer-events-none">
+
+            <img :style="`transform: translateY(-${offset}px)`" src="{{ asset('img/landingpage/hero.jpg') }}" alt="Hero Image" class="w-full rounded-xl object-cover shadow-hero-green transition-transform duration-300">
+        </div>
+
         <div class="absolute inset-0 pointer-events-none">
             <div class="hero-bg-dots absolute inset-0"></div>
         </div>
     </section>
 
-</body>
 
+
+
+    {{-- Articles Marquee --}}
+    <section class="relative pb-[8rem] pt-[2rem] bg-center bg-repeat bg-[length:100%_auto]" style="background-image: url('{{ asset('img/landingpage/bg-default.png') }}');">
+        <div class="absolute inset-0 bg-white/85"></div> {{-- overlay --}}
+
+        <div class="relative z-10">
+            <h2 class="text-[2.3rem] font-bold text-center mb-4">
+                <span class="text-green-900">Explore</span>
+                <span class="bg-gradient-to-l from-green-900 to-green-400 bg-clip-text text-transparent">Arti</span><span class="text-green-900">cles</span>
+
+            </h2>
+
+            <p class="text-[1rem] font-[600] text-gray-500 text-center max-w-2xl mx-auto mb-[2rem]">
+                Discover insightful articles, tips, and resources curated to help you grow and stay informed.
+            </p>
+
+            <div class="relative w-full overflow-x-hidden py-4">
+                <div x-data x-init="$nextTick(() => { $refs.content.appendChild($refs.cards.cloneNode(true)) })" class="flex animate-marquee gap-8">
+                    <div x-ref="content" class="flex gap-8">
+                        <div x-ref="cards" class="flex gap-8">
+                            @foreach($articles as $article)
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 ease-out hover:border-2 hover:border-green-500 w-80 flex-shrink-0">
+                                <div class="h-48 w-full relative overflow-hidden group">
+                                    @php
+                                    $imgPath = $article->url && \Illuminate\Support\Facades\Storage::exists('public/resources/' . $article->url)
+                                    ? asset('storage/resources/' . $article->url)
+                                    : asset('img/landingpage/article-default.jpg');
+                                    @endphp
+                                    <img src="{{ $imgPath }}" alt="{{ $article->title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                                    <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                                        <a class="flex items-center space-x-3">
+                                            <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-10 h-10 object-contain">
+                                            <span class="text-xl font-bold text-white">SafeSupport</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-md font-semibold text-gray-900 mb-2 line-clamp-1">{{ $article->title }}</h3>
+                                    <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $article->description }}</p>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+</body>
 </html>
+
+
+<style>
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-marquee {
+        display: flex;
+        animation: marquee 20s linear infinite;
+    }
+
+</style>

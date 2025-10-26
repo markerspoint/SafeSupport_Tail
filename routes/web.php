@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\LandingPageController;
 
 // student
 use App\Http\Controllers\Student\StudentProfileController;
@@ -27,9 +28,7 @@ use App\Http\Controllers\Counselor\CounselorScheduleController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);

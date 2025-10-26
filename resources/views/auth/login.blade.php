@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login - {{ config('app.name', 'SafeSupport') }}</title>
+    <link rel="icon" href="{{ asset('img/safecenter-logo.png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-pine-50 flex flex-col items-center min-h-screen">

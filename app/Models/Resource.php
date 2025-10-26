@@ -10,4 +10,10 @@ class Resource extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'type', 'url', 'is_active'];
+
+
+    public function counselor()
+    {
+        return $this->belongsTo(User::class, 'counselor_id');
+    }
 }
