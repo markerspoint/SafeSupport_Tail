@@ -43,7 +43,7 @@
     <div class="flex items-center justify-between px-6 py-3">
 
         <!-- Logo -->
-        <a href="/" class="flex items-center space-x-3">
+        <a href="{{ route('welcome') }}" class="flex items-center space-x-3">
             <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-10 h-10 object-contain">
             <span class="text-xl font-bold text-neutral-700">SafeSupport</span>
         </a>
@@ -51,11 +51,7 @@
         <!-- Desktop Menu -->
         <ul class="hidden md:flex space-x-2">
             <li>
-                <button 
-                    :class="{ 'bg-neutral-100' : navigationMenu=='getting-started', 'hover:bg-neutral-100' : navigationMenu!='getting-started' }"
-                    @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='getting-started'"
-                    @mouseleave="navigationMenuLeave()"
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md hover:text-neutral-900 transition-colors">
+                <button :class="{ 'bg-neutral-100' : navigationMenu=='getting-started', 'hover:bg-neutral-100' : navigationMenu!='getting-started' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='getting-started'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md hover:text-neutral-900 transition-colors">
                     Getting Started
                     <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'getting-started' }" class="ml-1 h-3 w-3 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -63,11 +59,7 @@
                 </button>
             </li>
             <li>
-                <button 
-                    :class="{ 'bg-neutral-100' : navigationMenu=='learn-more', 'hover:bg-neutral-100' : navigationMenu!='learn-more' }"
-                    @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='learn-more'"
-                    @mouseleave="navigationMenuLeave()"
-                    class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md hover:text-neutral-900 transition-colors">
+                <button :class="{ 'bg-neutral-100' : navigationMenu=='learn-more', 'hover:bg-neutral-100' : navigationMenu!='learn-more' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='learn-more'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md hover:text-neutral-900 transition-colors">
                     Learn More
                     <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'learn-more' }" class="ml-1 h-3 w-3 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -75,8 +67,9 @@
                 </button>
             </li>
             <li>
-                <a href="/documentation" class="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md hover:text-neutral-900 transition-colors">
-                    Documentation
+                <a href="{{ route('faqs') }}" class="relative inline-block px-4 py-2 text-sm font-medium text-black group">
+                    FAQs
+                    <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-green-700 transition-all duration-300 group-hover:w-full"></span>
                 </a>
             </li>
         </ul>
@@ -141,7 +134,7 @@
                     </div>
                 </div>
             </li>
-            <li><a href="/documentation" class="block px-3 py-2 rounded hover:bg-neutral-100">Documentation</a></li>
+            <li><a href="#" class="block px-3 py-2 rounded hover:bg-neutral-100">FAQs</a></li>
         </ul>
 
         <!-- Actions -->

@@ -11,5 +11,7 @@
 <body>
     @section('title', 'Articles')
 
+
+    
 </body>
 </html>

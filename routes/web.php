@@ -27,6 +27,9 @@ use App\Http\Controllers\Counselor\CounselorScheduleController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/faqs', function () {
+    return view('pages.faqs');
+})->name('faqs');
 
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 

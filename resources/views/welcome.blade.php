@@ -116,12 +116,12 @@
 
         <div class="relative z-10">
             <h2 class="text-[2.3rem] font-bold text-center mb-4">
-                <span class="text-green-900">Explore</span>
-                <span class="bg-gradient-to-l from-green-900 to-green-400 bg-clip-text text-transparent">Arti</span><span class="text-green-900">cles</span>
+                <span class="text-green-800">Explore</span>
+                <span class="bg-gradient-to-l from-green-900 to-green-400 bg-clip-text text-transparent">Arti</span><span class="text-green-800">cles</span>
 
             </h2>
 
-            <p class="text-[1.1rem] font-[600] text-green-900 text-center max-w-[50rem] mx-auto mb-[2rem]">
+            <p class="text-[1.1rem] font-[600] text-green-800 text-center max-w-[50rem] mx-auto mb-[2rem]">
                 Discover insightful articles, tips, and resources curated to help you grow and stay informed.
             </p>
 
@@ -173,13 +173,13 @@
 
         <div class="relative z-10">
             <h2 class="text-[2.3rem] font-bold text-center mb-4">
-                <span class="text-green-900">News</span>
+                <span class="text-green-800">News</span>
                 <span class="bg-gradient-to-r from-green-900 to-green-400 bg-clip-text text-transparent"> and </span>
-                <span class="text-green-900">Updates</span>
+                <span class="text-green-800">Updates</span>
             </h2>
 
 
-            <p class="text-[1.1rem] font-[600] text-green-900 text-center max-w-[55rem] mx-auto mb-[2rem]">
+            <p class="text-[1.1rem] font-[600] text-green-800 text-center max-w-[55rem] mx-auto mb-[2rem]">
                 Stay up-to-date with the latest announcements, updates, and important information from SafeSupport.
             </p>
 
