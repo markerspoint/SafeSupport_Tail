@@ -43,10 +43,14 @@
     <div class="flex items-center justify-between px-6 py-3">
 
         <!-- Logo -->
-        <a href="{{ route('welcome') }}" class="flex items-center space-x-3">
-            <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-10 h-10 object-contain">
-            <span class="text-xl font-bold text-neutral-700">SafeSupport</span>
+        {{-- <a href="{{ route('welcome') }}" class="flex items-center space-x-3">
+        <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-10 h-10 object-contain">
+        <span class="text-xl font-bold text-neutral-700">SafeSupport</span>
+        </a> --}}
+        <a href="{{ route('welcome') }}" class="flex items-center">
+            <img src="{{ asset('img/safesupport-logo.png') }}" alt="SafeSupport Logo" class="w-[7rem] h-[3rem] object-contain">
         </a>
+
 
         <!-- Desktop Menu -->
         <ul class="hidden md:flex space-x-2">

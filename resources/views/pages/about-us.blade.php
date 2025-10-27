@@ -44,8 +44,6 @@
             </p>
         </div>
 
-
-        <!-- Mission Section -->
         <div class="relative z-10 w-full max-w-[90%] sm:max-w-[40rem] md:max-w-[50rem] lg:max-w-[60rem] mx-auto border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-12 text-green-800 space-y-4 mb-8">
             <h2 class="text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] lg:text-[2.2rem] font-bold text-green-800 text-center mb-4">
                 Our Mission
@@ -55,7 +53,6 @@
             </p>
         </div>
 
-        <!-- Vision Section -->
         <div class="relative z-10 w-full max-w-[90%] sm:max-w-[40rem] md:max-w-[50rem] lg:max-w-[60rem] mx-auto border border-gray-200 rounded-2xl p-6 sm:p-8 md:p-12 text-green-800 space-y-4">
             <h2 class="text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] lg:text-[2.2rem] font-bold text-green-800 text-center mb-4">
                 Our Vision
@@ -65,8 +62,6 @@
             </p>
         </div>
 
-
-        <!-- Our Team -->
         <div class="mx-auto mt-16 text-center relative z-10 w-full max-w-[90%] sm:max-w-[40rem] md:max-w-[50rem] lg:max-w-[60rem]">
             <h2 class="text-2xl font-bold text-green-800 mb-4">The Developers</h2>
             <p class="text-sm sm:text-base md:text-[1rem] text-green-700 mb-8">
@@ -108,10 +103,16 @@
             </div>
         </div>
 
+        <div class="relative z-10 mt-16 w-full max-w-[90%] sm:max-w-[40rem] md:max-w-[50rem] lg:max-w-[60rem] mx-auto text-center p-6 rounded-2xl border border-gray-200 bg-white/80">
+            <h2 class="text-2xl font-bold text-green-800 mb-4">Special Thanks</h2>
+            <p class="text-sm sm:text-base md:text-[1rem] text-green-700 mb-6">
+                We would like to extend our heartfelt thanks to <strong>Robel Andrew J. Ambahan</strong> for designing the SafeSupport logo.
+            </p>
+            <div class="flex justify-center">
+                <img src="{{ asset('img/safesupport-logo.png') }}" alt="SafeSupport Logo" class="w-[7rem] h-[3rem] object-contain">
+            </div>
+        </div>
     </section>
-
-
-
 
     @include('partials.footer')
 </body>

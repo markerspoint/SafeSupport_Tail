@@ -81,14 +81,16 @@
                 Student, your feelings matter. Find the compassionate, professional counseling you need, made simple and always within reach.
             </p>
 
-            <div class="text-center mt-6">
-                <x-button text="Get Started" href="{{ route('login') }}" class="px-[4rem] py-[1.2rem] text-sm tracking-wide 
-                        transform transition-transform duration-200 
-                        hover:-translate-y-1 hover:shadow-lg group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </x-button>
+            <div class="flex justify-center mt-6">
+                <div class="w-[32rem] sm:w-[32rem] md:w-[20rem] lg:w-[20rem]">
+                    <x-button text="Get Started" href="{{ route('login') }}" class="w-full px-6 py-3 text-sm tracking-wide 
+                   transform transition-transform duration-200 
+                   hover:-translate-y-1 hover:shadow-lg group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </x-button>
+                </div>
             </div>
 
             @php
@@ -96,18 +98,20 @@
             $studentCount = User::where('role', 'student')->count();
             @endphp
 
-            <div class="mt-8 flex justify-center space-x-4 relative z-20">
-                <span class="pill-animate inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-neutral-700 bg-neutral-100 rounded-full hover:shadow-green-lg hover:scale-105 transition-all duration-300">
+            <div class="mt-8 flex justify-center space-x-2 sm:space-x-4 md:space-x-6 relative z-20">
+                <span class="pill-animate inline-flex items-center px-2 py-1 sm:px-4 sm:py-2 md:px-4 md:py-3 border border-gray-300 text-xs sm:text-sm md:text-base font-medium text-neutral-700 bg-neutral-100 rounded-full hover:shadow-green-lg hover:scale-105 transition-all duration-300">
                     🎓 Join {{ number_format($studentCount) }}+ Students
                 </span>
-                <span class="pill-animate-delay inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium text-neutral-700 bg-neutral-100 rounded-full hover:shadow-green-lg hover:scale-105 transition-all duration-300">
-                    <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-5 h-5 object-contain">
-                    <span class="ml-2">Made for Students, by Students</span>
+
+                <span class="pill-animate-delay inline-flex items-center px-2 py-1 sm:px-4 sm:py-2 md:px-4 md:py-3 border border-gray-300 text-xs sm:text-sm md:text-base font-medium text-neutral-700 bg-neutral-100 rounded-full hover:shadow-green-lg hover:scale-105 transition-all duration-300">
+                    <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 object-contain">
+                    <span class="ml-1 sm:ml-2 md:ml-3">Made for Students, by Students</span>
                 </span>
             </div>
+
         </div>
 
-        <div x-data="{ offset: 0 }" x-init="window.addEventListener('scroll', () => { offset = window.scrollY * 0.3 })" class="absolute left-1/2 transform -translate-x-1/2 mt-12 z-30 w-full max-w-5xl pointer-events-none">
+        <div x-data="{ offset: 0 }" x-init="window.addEventListener('scroll', () => { offset = window.scrollY * 0.3 })" class="absolute left-1/2 transform -translate-x-1/2 mt-12 z-30 w-[29rem] sm:w-[35rem] md:w-[45rem] lg:w-[60rem] pointer-events-none">
             <img :style="`transform: translateY(-${offset}px)`" src="{{ asset('img/landingpage/hero.jpg') }}" alt="Hero Image" class="w-full rounded-xl object-cover shadow-hero-green transition-transform duration-300">
         </div>
     </section>
@@ -133,21 +137,23 @@
                     <div x-ref="content" class="flex gap-8">
                         <div x-ref="cards" class="flex gap-8">
                             @foreach($articles as $article)
-                            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 ease-out hover:border-2 hover:border-green-500 w-80 flex-shrink-0">
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 ease-out hover:border-2 hover:border-green-300 w-80 flex-shrink-0">
                                 <div class="h-48 w-full relative overflow-hidden group">
                                     @php
                                     $imgPath = $article->url && \Illuminate\Support\Facades\Storage::exists('public/resources/' . $article->url)
                                     ? asset('storage/resources/' . $article->url)
-                                    : asset('img/landingpage/article-default.jpg');
+                                    : asset('img/landingpage/arbg.jpg');
                                     @endphp
-                                    <img src="{{ $imgPath }}" alt="{{ $article->title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                                    <div class="absolute inset-0 flex items-center justify-center bg-black/30">
-                                        <a class="flex items-center space-x-3">
-                                            <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-10 h-10 object-contain">
-                                            <span class="text-xl font-bold text-white">SafeSupport</span>
+                                    <img src="{{ $imgPath }}" alt="{{ $article->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                    <div class="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" style="background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%);">
+                                    </div>
+                                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <a class="flex items-center">
+                                            <img src="{{ asset('img/safesupport-logo.png') }}" alt="SafeSupport Logo" class="w-[10rem] h-[4rem] object-contain relative z-10">
                                         </a>
                                     </div>
                                 </div>
+
                                 <div class="p-6">
                                     <h3 class="text-md font-semibold text-gray-900 mb-2 line-clamp-1">{{ $article->title }}</h3>
                                     <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $article->description }}</p>
@@ -172,7 +178,7 @@
 
     {{-- Announcement Marquee --}}
     <section class="relative pb-[8rem] pt-[2rem] bg-center bg-repeat bg-[length:100%_auto]" style="background-image: url('{{ asset('img/landingpage/bg-default-1.png') }}');">
-        <div class="absolute inset-0 bg-white/70"></div> {{-- overlay --}}
+        <div class="absolute inset-0 bg-white/70"></div>
 
         <div class="relative z-10">
             <h2 class="text-[2.3rem] font-bold text-center mb-4">
@@ -191,21 +197,23 @@
                     <div x-ref="content" class="flex gap-8">
                         <div x-ref="cards" class="flex gap-8">
                             @foreach($articles as $article)
-                            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 ease-out hover:border-2 hover:border-green-500 w-80 flex-shrink-0">
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 ease-out hover:border-2 hover:border-green-300 w-80 flex-shrink-0">
                                 <div class="h-48 w-full relative overflow-hidden group">
                                     @php
                                     $imgPath = $article->url && \Illuminate\Support\Facades\Storage::exists('public/resources/' . $article->url)
                                     ? asset('storage/resources/' . $article->url)
-                                    : asset('img/landingpage/article-default.jpg');
+                                    : asset('img/landingpage/arbg.jpg');
                                     @endphp
-                                    <img src="{{ $imgPath }}" alt="{{ $article->title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                                    <div class="absolute inset-0 flex items-center justify-center bg-black/30">
-                                        <a class="flex items-center space-x-3">
-                                            <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="w-10 h-10 object-contain">
-                                            <span class="text-xl font-bold text-white">SafeSupport</span>
+                                    <img src="{{ $imgPath }}" alt="{{ $article->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                    <div class="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none" style="background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 70%);">
+                                    </div>
+                                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <a class="flex items-center">
+                                            <img src="{{ asset('img/safesupport-logo.png') }}" alt="SafeSupport Logo" class="w-[10rem] h-[4rem] object-contain relative z-10">
                                         </a>
                                     </div>
                                 </div>
+
                                 <div class="p-6">
                                     <h3 class="text-md font-semibold text-gray-900 mb-2 line-clamp-1">{{ $article->title }}</h3>
                                     <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $article->description }}</p>
@@ -400,7 +408,6 @@
                         <path d="m9 18 6-6-6-6"></path>
                     </svg>
                 </x-button>
-
             </div>
         </div>
     </section>
@@ -425,6 +432,7 @@
         display: flex;
         animation: marquee 20s linear infinite;
     }
+
 
 
     /* announement marquee */
