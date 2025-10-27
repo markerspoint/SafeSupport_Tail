@@ -24,10 +24,10 @@
 
             {{-- mobile dropdown --}}
             <div class="md:hidden w-full p-4 flex flex-col items-start">
-                <button @click="mobileOpen = !mobileOpen" class="flex items-center justify-between w-full rounded-lg bg-green-600 text-white py-3 px-4 font-medium shadow-md border-b-4 border-green-900 transition">
+                <button @click="mobileOpen = !mobileOpen" class="flex items-center justify-between w-full rounded-lg bg-green-500 text-white py-3 px-4 font-medium shadow-md border-b-4 border-green-600 transition">
                     <div class="flex items-center gap-2">
                         @if (request()->routeIs('student.dashboard'))
-                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-info h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-info h-4 w-auto" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="12" y1="16" x2="12" y2="12"></line>
                             <line x1="12" y1="8" x2="12.01" y2="8"></line>
@@ -63,7 +63,7 @@
                         </svg>
                         @endif
 
-                       {{-- active page label --}}
+                        {{-- active page label --}}
                         <span>
                             @if (request()->routeIs('student.dashboard'))
                             About
@@ -89,37 +89,39 @@
                 {{-- links for dropdown --}}
                 <div x-show="mobileOpen" x-transition class="mt-2 w-full flex flex-col rounded-lg border border-green-200 overflow-hidden bg-white shadow-md">
                     <a href="#" class="flex items-center gap-2 py-3 px-4 text-green-700 hover:bg-green-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-message-square h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-message-square h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
                         Discussions
                     </a>
                     <a href="#" class="flex items-center gap-2 py-3 px-4 text-green-700 hover:bg-green-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-message-circle h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-message-circle h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
                         </svg>
                         Chat
                     </a>
                     <a href="#" class="flex items-center gap-2 py-3 px-4 text-green-700 hover:bg-green-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-book-open h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-book-open h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                             <path d="M12 7v14"></path>
-                            <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+                            <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z">
+                            </path>
                         </svg>
                         Courses
                     </a>
                     <a href="#" class="flex items-center gap-2 py-3 px-4 text-green-700 hover:bg-green-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-calendar h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M8 2v4" />
-                            <path d="M16 2v4" />
-                            <rect width="18" height="18" x="3" y="4" rx="2" />
-                            <path d="M3 10h18" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-calendar h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M8 2v4"></path>
+                            <path d="M16 2v4"></path>
+                            <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                            <path d="M3 10h18"></path>
+                        </svg>
                         Calendar
                     </a>
-                    <a href="{{ route('student.dashboard') }}" class="flex items-center gap-2 py-3 px-4 {{ request()->routeIs('student.dashboard') ? 'bg-green-600 text-white border-b-4 border-green-900 shadow-lg' : 'text-green-700 hover:bg-green-100' }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-info h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M12 16v-4" />
-                            <path d="M12 8h.01" />
+                    <a href="{{ route('student.dashboard') }}" class="flex items-center gap-2 py-3 px-4 {{ request()->routeIs('student.dashboard') ? 'bg-green-500 text-white border-b-4 border-green-600 shadow-lg' : 'text-green-700 hover:bg-green-100' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-info h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
                         </svg>
                         About
                     </a>
@@ -128,7 +130,7 @@
 
             {{-- sidebar desktop --}}
             <aside :class="open ? 'w-[12rem]' : 'w-[6rem] p-4'" class="hidden md:flex flex-col transition-all duration-300 mt-[2rem] pl-[2rem]">
-                <div class="flex flex-col p-2 space-y-1 text-green-700">
+                <div class="flex flex-col p-2 space-y-1 text-green-500">
                     <a href="#" class="flex items-center rounded-lg py-3 px-2 text-sm font-medium transition-colors gap-2 hover:bg-green-100" title="Discussions">
                         <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-message-square h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -160,7 +162,7 @@
                     </a>
                     <a href="{{ route('student.dashboard') }}" class="flex items-center rounded-lg py-3 px-2 text-sm font-medium gap-2 transition-all
                                 {{ request()->routeIs('student.dashboard') 
-                                    ? 'bg-green-600 text-white shadow-lg border-b-4 border-green-900' 
+                                    ? 'bg-green-500 text-white border-b-4 border-green-600 shadow-lg' 
                                     : 'hover:bg-green-100 text-green-700' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-info h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
