@@ -73,7 +73,7 @@
                     <div class="w-[150px] h-[150px] mb-3">
                         <img src="{{ asset('devs/ian.jpg') }}" alt="Developer 1" class="w-full h-full object-cover rounded-full shadow-lg">
                     </div>
-                    <p class="text-gray-800 font-semibold text-sm">Mark Ian Dela Cruz</p>
+                    <p class="text-green-800 font-bold text-md">Mark Ian Dela Cruz</p>
                     <p class="text-gray-500 text-xs">Developer / Programmer</p>
                 </div>
 
@@ -81,7 +81,7 @@
                     <div class="w-[150px] h-[150px] mb-3">
                         <img src="{{ asset('devs/yvonne.jpg') }}" alt="Developer 2" class="w-full h-full object-cover rounded-full shadow-lg">
                     </div>
-                    <p class="text-gray-800 font-semibold text-sm">Yvonne Grace Ochida</p>
+                    <p class="text-green-800 font-bold text-md">Yvonne Grace Ochida</p>
                     <p class="text-gray-500 text-xs">Analytical Writer</p>
                 </div>
 
@@ -89,7 +89,7 @@
                     <div class="w-[150px] h-[150px] mb-3">
                         <img src="{{ asset('devs/cristine.jpeg') }}" alt="Developer 3" class="w-full h-full object-cover rounded-full shadow-lg">
                     </div>
-                    <p class="text-gray-800 font-semibold text-sm">Cristine Bilbar</p>
+                    <p class="text-green-800 font-bold text-md">Cristine Bilbar</p>
                     <p class="text-gray-500 text-xs">Quality and Assurance</p>
                 </div>
 
@@ -97,7 +97,7 @@
                     <div class="w-[150px] h-[150px] mb-3">
                         <img src="{{ asset('devs/janpil.jpg') }}" alt="Developer 4" class="w-full h-full object-cover rounded-full shadow-lg">
                     </div>
-                    <p class="text-gray-800 font-semibold text-sm">Johnphil Arreco</p>
+                    <p class="text-green-800 font-bold text-md">Johnphil Arreco</p>
                     <p class="text-gray-500 text-xs">User Researcher</p>
                 </div>
             </div>

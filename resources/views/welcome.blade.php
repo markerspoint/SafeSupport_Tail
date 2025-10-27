@@ -111,7 +111,7 @@
 
         </div>
 
-        <div x-data="{ offset: 0 }" x-init="window.addEventListener('scroll', () => { offset = window.scrollY * 0.3 })" class="absolute left-1/2 transform -translate-x-1/2 mt-12 z-30 w-[29rem] sm:w-[35rem] md:w-[45rem] lg:w-[60rem] pointer-events-none">
+        <div x-data="{ offset: 0 }" x-init="window.addEventListener('scroll', () => { offset = window.scrollY * 0.3 })" class="absolute left-1/2 transform -translate-x-1/2 mt-12 z-30 w-[22rem] xs:w-[30rem] sm:w-[35rem] md:w-[45rem] lg:w-[60rem] pointer-events-none">
             <img :style="`transform: translateY(-${offset}px)`" src="{{ asset('img/landingpage/hero.jpg') }}" alt="Hero Image" class="w-full rounded-xl object-cover shadow-hero-green transition-transform duration-300">
         </div>
     </section>

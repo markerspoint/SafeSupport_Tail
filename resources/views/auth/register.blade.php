@@ -8,13 +8,10 @@
 </head>
 <body class="bg-pine-50 flex flex-col items-center min-h-screen">
 
-    <nav class="w-full bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center">
-            <a href="{{ route('welcome') }}" class="flex items-center">
-                <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo" class="h-8 w-auto mr-2">
-                <span class="text-xl font-bold text-[#171717]">SafeSupport</span>
-            </a>
-        </div>
+    <nav class="w-full bg-white shadow-sm px-[10rem] py-3">
+        <a href="{{ route('welcome') }}" class="flex items-center">
+            <img src="{{ asset('img/safesupport-logo.png') }}" alt="SafeSupport Logo" class="w-[7rem] h-[3rem] object-contain">
+        </a>
     </nav>
 
     <!-- Register Card -->
