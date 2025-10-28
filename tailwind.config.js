@@ -13,7 +13,7 @@ module.exports = {
                 "hero-green": "0 10px 20px rgba(16, 185, 129, 0.6)",
             },
             screens: {
-                xs: "480px", 
+                xs: "430px", 
             },
         },
     },

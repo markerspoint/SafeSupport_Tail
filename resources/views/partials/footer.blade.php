@@ -60,7 +60,7 @@
 
         {{-- Copyright --}}
         <p class="mt-8 text-base leading-6 text-center text-gray-400">
-            &copy; {{ date('Y') }} SafeSupport, Inc. All rights reserved.
+            &copy; {{ date('Y') }} SafeSupport. All rights reserved.
         </p>
     </div>
 </section>

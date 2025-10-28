@@ -16,7 +16,7 @@
         <div class="absolute inset-0 bg-white/70 z-0"></div>
 
         <div class="relative z-10">
-            <h1 class="text-[2rem] font-[650] md:text-[2rem] lg:text-[3rem] text-center mb-2 text-green-800">
+            <h1 class="text-[1.4rem] font-[650] xs-text-[2rem] sm:text-[2rem] md:text-[2rem] lg:text-[3rem] text-center mb-2 text-green-800">
                 Frequently <span class="bg-gradient-to-r from-green-800 via-green-400 to-green-700 bg-clip-text text-transparent">Asked</span> Questions
             </h1>
 
@@ -24,11 +24,11 @@
         </div>
 
         <div x-data="{ 
-    activeAccordion: '', 
-    setActiveAccordion(id) { 
-        this.activeAccordion = (this.activeAccordion == id) ? '' : id 
-    } 
-}" class="relative w-[28rem] lg:w-[34rem] mx-auto text-[1.1rem] py-5 px-5 mb-6 space-y-3 bg-transparent border border-gray-200 rounded-2xl">
+                    activeAccordion: '', 
+                    setActiveAccordion(id) { 
+                        this.activeAccordion = (this.activeAccordion == id) ? '' : id 
+                    } 
+                }" class="relative w-[24rem] md:w-[30rem] lg:w-[34rem] mx-auto text-[1.1rem] py-5 px-5 mb-6 space-y-3 bg-transparent border border-gray-200 rounded-2xl">
 
             <div class="flex items-center space-x-2 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-auto h-[2rem] pl-3 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -69,11 +69,11 @@
         </div>
 
         <div x-data="{ 
-    activeAccordion: '', 
-    setActiveAccordion(id) { 
-        this.activeAccordion = (this.activeAccordion == id) ? '' : id 
-    } 
-}" class="relative w-[28rem] lg:w-[34rem] mx-auto text-[1.1rem] py-5 px-5 mb-6 space-y-3 bg-transparent border border-gray-200 rounded-2xl">
+                        activeAccordion: '', 
+                        setActiveAccordion(id) { 
+                            this.activeAccordion = (this.activeAccordion == id) ? '' : id 
+                        } 
+                    }" class="relative w-[24rem] md:w-[30rem] lg:w-[34rem] mx-auto text-[1.1rem] py-5 px-5 mb-6 space-y-3 bg-transparent border border-gray-200 rounded-2xl">
 
             <div class="flex items-center space-x-2 mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-auto h-[2rem] pl-3 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -159,7 +159,7 @@
         </div>
 
         <div class="flex justify-center z-10">
-            <div class="relative w-[27rem] sm:w-[30rem] md:w-[45rem] lg:w-[60rem] py-16 bg-[#2d6a4f] text-center text-white mt-4 rounded-2xl shadow-lg">
+            <div class="relative w-[20rem] xs:w-[25rem] sm:w-[30rem] md:w-[45rem] lg:w-[60rem] py-[2rem] xs:py-[2rem] sm:py-[3rem] md:py-[3rem] lg:py-[4rem] bg-[#2d6a4f] text-center text-white mt-4 rounded-2xl shadow-lg">
                 <h2 class="mb-4 text-[2rem] md:text-[2.25rem] lg:text-[2.5rem] font-bold">Still have questions?</h2>
                 <p class="mx-auto mb-8 px-[2rem] md:max-w-[36rem] lg:max-w-2xl text-[0.9rem] md:text-[1.1rem] lg:text-[1.3rem] text-white/90">
                     Can't find the answer you're looking for? Our team is here to help.

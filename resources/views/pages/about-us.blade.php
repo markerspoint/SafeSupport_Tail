@@ -103,7 +103,7 @@
             </div>
         </div>
 
-        <div class="relative z-10 mt-16 w-full max-w-[90%] sm:max-w-[40rem] md:max-w-[50rem] lg:max-w-[60rem] mx-auto text-center p-6 rounded-2xl border border-gray-200 bg-white/80">
+        <div class="relative z-10 mt-16 w-full max-w-[90%] sm:max-w-[40rem] md:max-w-[45rem] lg:max-w-[60rem] mx-auto text-center p-6 rounded-2xl border border-gray-200 bg-white/80">
             <h2 class="text-2xl font-bold text-green-800 mb-4">Special Thanks</h2>
             <p class="text-sm sm:text-base md:text-[1rem] text-green-700 mb-6">
                 We would like to extend our heartfelt thanks to <strong>Robel Andrew J. Ambahan</strong> for designing the SafeSupport logo.

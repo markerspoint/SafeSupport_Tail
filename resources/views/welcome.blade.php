@@ -64,7 +64,7 @@
     @include('partials.nav')
 
     {{-- Hero Section --}}
-    <section class="relative min-h-[120vh] w-full py-24 overflow-hidden">
+    <section class="relative h-[40rem] sm:h-[47rem] md:h-[53rem] lg:h-[60rem] w-full py-16 sm:py-20 md:py-24 overflow-hidden">
         <div class="absolute inset-0">
             <img src="{{ asset('img/landingpage/bg-default-1.png') }}" alt="Background" class="w-full h-full object-cover">
         </div>
@@ -72,7 +72,7 @@
         <div class="absolute inset-0 bg-white/70 z-10"></div>
 
         <div class="relative z-20 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h1 class="mt-11 text-[2rem] sm:text-[3rem] md:text-[4rem] font-extrabold leading-tight 
+            <h1 class="mt-11 text-[2rem] sm:text-[3rem] md:text-[3rem] font-extrabold leading-tight 
                 bg-gradient-to-r from-black via-gray-400 to-black bg-clip-text text-transparent">
                 Listen. Heal. Grow. Live.
             </h1>
@@ -111,9 +111,10 @@
 
         </div>
 
-        <div x-data="{ offset: 0 }" x-init="window.addEventListener('scroll', () => { offset = window.scrollY * 0.3 })" class="absolute left-1/2 transform -translate-x-1/2 mt-12 z-30 w-[22rem] xs:w-[30rem] sm:w-[35rem] md:w-[45rem] lg:w-[60rem] pointer-events-none">
-            <img :style="`transform: translateY(-${offset}px)`" src="{{ asset('img/landingpage/hero.jpg') }}" alt="Hero Image" class="w-full rounded-xl object-cover shadow-hero-green transition-transform duration-300">
+        <div class="absolute left-1/2 transform -translate-x-1/2 mt-12 z-30 w-[22rem] xs:w-[25rem] sm:w-[35rem] md:w-[45rem] lg:w-[60rem] pointer-events-none">
+            <img src="{{ asset('img/landingpage/hero.jpg') }}" alt="Hero Image" class="w-full rounded-xl object-cover shadow-hero-green">
         </div>
+
     </section>
 
 
@@ -227,7 +228,7 @@
         </div>
     </section>
 
-    <section id="features" class="py-16 relative bg-center bg-repeat bg-[length:100%_auto]" style="background-image: url('{{ asset('img/landingpage/bg-default-1.png') }}');">
+    <section class="py-16 relative bg-center bg-repeat bg-[length:100%_auto]" style="background-image: url('{{ asset('img/landingpage/bg-default-1.png') }}');">
         <div class="absolute inset-0 bg-white/70"></div>
 
         <div class="relative mx-auto max-w-6xl px-6 z-10">
@@ -397,7 +398,7 @@
         <p class="font-semibold text-center text-green-700 relative">Platform build by students, for students</p>
 
         <div class="flex justify-center z-10">
-            <div class="relative w-[27rem] sm:w-[30rem] md:w-[45rem] lg:w-[60rem] py-16 bg-[#2d6a4f] text-center text-white mt-4 rounded-2xl shadow-lg">
+            <div class="relative w-[20rem] xs:w-[25rem] sm:w-[30rem] md:w-[45rem] lg:w-[60rem] py-[2rem] xs:py-[2rem] sm:py-[3rem] md:py-[3rem] lg:py-[4rem] bg-[#2d6a4f] text-center text-white mt-4 rounded-2xl shadow-lg">
                 <h2 class="mb-4 text-[2rem] md:text-[2.25rem] lg:text-[2.5rem] font-bold">Still have questions?</h2>
                 <p class="mx-auto mb-8 px-[2rem] md:max-w-[36rem] lg:max-w-2xl text-[0.9rem] md:text-[1.1rem] lg:text-[1.3rem] text-white/90">
                     Can't find the answer you're looking for? Our team is here to help.
