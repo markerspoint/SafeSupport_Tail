@@ -7,13 +7,17 @@ module.exports = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                sans: ["Poppins", "ui-sans-serif", "system-ui"],
+                heading: ["Poppins", "ui-sans-serif", "system-ui"],
+            },
             boxShadow: {
                 green: "0 0 8px 0 rgba(16, 185, 129, 0.6)",
                 "green-lg": "0 0 20px 0 rgba(16, 185, 129, 0.8)",
                 "hero-green": "0 10px 20px rgba(16, 185, 129, 0.6)",
             },
             screens: {
-                xs: "430px", 
+                xs: "430px",
             },
         },
     },
