@@ -9,6 +9,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Student\ResourceController;
 use App\Http\Controllers\Student\StudentDashboardController;
+use App\Http\Controllers\Student\AboutController;
 
 // counselor
 use App\Http\Controllers\Counselor\CounselorDashboard;
@@ -45,6 +46,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 Route::middleware('auth')->prefix('student')->group(function () {
     Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
+    Route::get('/about', [AboutController::class, 'index'])->name('student.about');
 
     Route::get('/appointments', [AppointmentController::class, 'index'])->name('student.appointments');
     Route::get('/appointments/book', [AppointmentController::class, 'create'])->name('student.appointments.book');
