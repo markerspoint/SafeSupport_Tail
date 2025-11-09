@@ -30,12 +30,12 @@ $user = Auth::user();
             <!-- Right side: notifications + user -->
             <div class="flex items-center space-x-2">
                 <!-- Message icon -->
-                <button class="relative rounded-full p-2 pr-[-5rem] hidden md:flex">
+                <a href="{{ route('student.messages') }}" class="relative rounded-full p-2 hidden md:flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-6 w-6 text-green-800">
                         <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
                     </svg>
-                    <span class="notification-dot absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full bg-destructive"></span>
-                </button>
+                    <span class="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full bg-destructive"></span>
+                </a>
 
                 <div x-data="{ showNotifications: false }" class="relative">
                     <!-- Bell icon -->
@@ -115,7 +115,8 @@ $user = Auth::user();
                                     Settings
                                 </a>
                             </div>
-
+                            
+                            
                             <div class="border-t my-1"></div>
 
                             <div class="px-2">
@@ -135,7 +136,6 @@ $user = Auth::user();
             </div>
         </header>
 
-
         {{-- drawer --}}
         <div x-data="{ drawerOpen: false }" @open-user-drawer.window="drawerOpen = true">
             {{-- Off-canvas drawer (mobile only) --}}
@@ -150,19 +150,36 @@ $user = Auth::user();
                     </div>
 
                     <div class="px-6 pb-4 space-y-2">
-                        <a href="#" @click="drawerOpen = false" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-800 bg-green-50 rounded-lg hover:bg-green-100">
+                        <a href="#" @click="drawerOpen = false" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-800 rounded-lg hover:bg-green-100">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                                 <circle cx="12" cy="7" r="4" />
                             </svg>
                             Profile
                         </a>
-                        <a href="#" @click="drawerOpen = false" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-800 bg-green-50 rounded-lg hover:bg-green-100">
+                        <a href="#" @click="drawerOpen = false" class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-green-800 rounded-lg hover:bg-green-100">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                 <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
                                 <circle cx="12" cy="12" r="3" />
                             </svg>
                             Settings
+                        </a>
+
+                        <a href="{{ route('student.notification') }}" @click="drawerOpen = false" class="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg 
+                                {{ request()->routeIs('student.notification') ? 'bg-green-100 text-green-800' : 'text-green-800 hover:bg-green-50' }}">
+                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                            </svg>
+                            Notifications
+                        </a>
+
+                        <a href="{{ route('student.messages') }}" @click="drawerOpen = false" class="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg 
+                                {{ request()->routeIs('student.messages') ? 'bg-green-100 text-green-800' : 'text-green-800 hover:bg-green-50' }}">
+                            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                            </svg>
+                            Messages
                         </a>
                     </div>
                 </div>
@@ -401,14 +418,11 @@ $user = Auth::user();
                             <span class="max-w-[64px] truncate transition-all duration-200 text-green-800">Communities</span>
                         </a>
 
-                        <a aria-label="View notifications" href="{{ route('student.notification') }}"
-                            class="relative flex justify-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary active:scale-95">
+                        <a aria-label="View notifications" href="{{ route('student.notification') }}" class="relative flex justify-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary active:scale-95">
                             <div class="flex flex-col items-center gap-1 text-xs font-medium transition-all duration-200
                                         rounded-md px-3 py-1 m-2
                                         {{ request()->routeIs('student.notification') ? 'bg-green-100 text-green-800' : 'text-green-800 hover:text-green-200' }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-bell h-5 w-5 transition-all duration-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell h-5 w-5 transition-all duration-200">
                                     <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
                                     <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
                                 </svg>
