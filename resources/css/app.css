@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 @import "flowbite/dist/flowbite.css";
-
 @import "./calendar.css";
 
 /* custom shadow for cards */
@@ -29,6 +28,17 @@
         background-position: -200px -200px;
     }
 }
+
+/* aos */
+[data-aos="fade"] {
+  opacity: 0;
+  transition: opacity 800ms ease-in-out;
+}
+[data-aos="fade"].aos-animate {
+  opacity: 1;
+}
+
+
 
 
 

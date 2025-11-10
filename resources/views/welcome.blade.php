@@ -77,32 +77,43 @@
 
     {{-- Hero Section --}}
     <section
-        class="relative h-[40rem] sm:h-[47rem] md:h-[53rem] lg:h-[60rem] w-full py-16 sm:py-20 md:py-24 overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="{{ asset('img/landingpage/bg-default-1.png') }}" alt="Background"
-                class="w-full h-full object-cover">
-        </div>
-        <div class="absolute inset-0 hero-bg-dots pointer-events-none"></div>
-        <div class="absolute inset-0 bg-white/70 z-10"></div>
+        class="relative h-[40rem] sm:h-[47rem] md:h-[53rem] lg:h-[60rem] w-full py-16 sm:py-20 md:py-24 overflow-hidden"
+        id="hero">
 
+        <!-- Background -->
+        <div class="absolute inset-0">
+            <img src="{{ asset('img/landingpage/bg-default-1.png') }}" alt="Background" data-aos="fade"
+                data-aos-anchor="#hero" data-aos-anchor-placement="top-bottom" data-aos-mirror="true" class="w-full h-full object-cover" />
+        </div>
+
+        <div class="absolute inset-0 hero-bg-dots pointer-events-none"></div>
+
+        <div data-aos="fade" data-aos-anchor="#hero" data-aos-anchor-placement="top-bottom"
+            class="absolute inset-0 bg-white/70 z-10">
+        </div>
+
+        <!-- Content -->
         <div class="relative z-20 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h1
-                class="mt-11 text-[2rem] sm:text-[3rem] md:text-[3rem] font-extrabold leading-tight 
-                bg-gradient-to-r from-black via-gray-400 to-black bg-clip-text text-transparent">
+
+            <h1 data-aos="fade" data-aos-delay="800" data-aos-anchor="#hero" data-aos-anchor-placement="top-bottom"
+                class="mt-11 text-[2rem] sm:text-[3rem] md:text-[3rem] font-extrabold leading-tight
+             bg-gradient-to-r from-black via-gray-400 to-black bg-clip-text text-transparent">
                 Listen. Heal. Grow. Live.
             </h1>
 
-            <p class="mt-6 text-md font-[600] sm:text-[1rem] md:text-[1.3rem] text-gray-700 max-w-[44rem] mx-auto">
+            <p data-aos="fade" data-aos-delay="700" data-aos-anchor="#hero" data-aos-anchor-placement="top-bottom"
+                class="mt-6 text-md font-[600] sm:text-[1rem] md:text-[1.3rem] text-gray-700 max-w-[44rem] mx-auto">
                 Student, your feelings matter. Find the compassionate, professional counseling you need, made simple and
                 always within reach.
             </p>
 
-            <div class="flex justify-center mt-6">
+            <div data-aos="fade" data-aos-delay="600" data-aos-anchor="#hero" data-aos-anchor-placement="top-bottom"
+                class="flex justify-center mt-6">
                 <div class="w-[32rem] sm:w-[32rem] md:w-[20rem] lg:w-[20rem]">
                     <x-button text="Get Started" href="{{ route('login') }}"
-                        class="w-full px-6 py-3 text-sm tracking-wide 
-                   transform transition-transform duration-200 
-                   hover:-translate-y-1 hover:shadow-lg group">
+                        class="w-full px-6 py-3 text-sm tracking-wide
+                 transform transition-transform duration-200
+                 hover:-translate-y-1 hover:shadow-lg group">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1"
                             fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -118,39 +129,27 @@
             @endphp
 
             <div class="mt-8 flex justify-center space-x-2 sm:space-x-4 md:space-x-6 relative z-20">
-                <span
+                <span data-aos="fade" data-aos-delay="500" data-aos-anchor="#hero"
+                    data-aos-anchor-placement="top-bottom"
                     class="group relative inline-flex items-center
-                        px-2 py-1 sm:px-4 sm:py-2 md:px-4 md:py-3
-                        text-xs sm:text-sm md:text-base font-medium
-                        text-neutral-700 rounded-full
-                        border border-green-300
-                        bg-gradient-to-r from-green-50 via-green-100 to-green-50
-                        backdrop-blur-sm
-                        transition-all duration-300
-                        hover:border-green-400 hover:shadow-lg hover:shadow-green-200/40 hover:scale-[1.03]
-                        before:absolute before:inset-0 before:-z-10
-                        before:bg-gradient-to-r before:from-transparent before:via-green-900 before:to-transparent
-                        before:opacity-0 group-hover:before:opacity-100
-                        before:animate-[shimmer_1s_linear_infinite]
-                        overflow-hidden">
+               px-2 py-1 sm:px-4 sm:py-2 md:px-4 md:py-3
+               text-xs sm:text-sm md:text-base font-medium
+               text-neutral-700 rounded-full
+               border border-green-300
+               bg-gradient-to-r from-green-50 via-green-100 to-green-50
+               backdrop-blur-sm">
                     🎓 Join {{ number_format($studentCount) }}+ Students
                 </span>
 
-                <span
+                <span data-aos="fade" data-aos-delay="500" data-aos-anchor="#hero"
+                    data-aos-anchor-placement="top-bottom"
                     class="group relative inline-flex items-center
-                            px-2 py-1 sm:px-4 sm:py-2 md:px-4 md:py-3
-                            text-xs sm:text-sm md:text-base font-medium
-                            text-neutral-700 rounded-full
-                            border border-green-300
-                            bg-gradient-to-r from-green-50 via-green-100 to-green-50
-                            backdrop-blur-sm
-                            transition-all duration-300
-                            hover:border-green-400 hover:shadow-lg hover:shadow-green-200/40 hover:scale-[1.03]
-                            before:absolute before:inset-0 before:-z-10
-                            before:bg-gradient-to-r before:from-transparent before:via-green-400 before:to-transparent
-                            before:opacity-0 group-hover:before:opacity-100
-                            before:animate-[shimmer_1s_linear_infinite]
-                            overflow-hidden">
+               px-2 py-1 sm:px-4 sm:py-2 md:px-4 md:py-3
+               text-xs sm:text-sm md:text-base font-medium
+               text-neutral-700 rounded-full
+               border border-green-300
+               bg-gradient-to-r from-green-50 via-green-100 to-green-50
+               backdrop-blur-sm">
                     <img src="{{ asset('img/safecenter-logo.png') }}" alt="SafeSupport Logo"
                         class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 object-contain">
                     <span class="ml-1 sm:ml-2 md:ml-3">Made for Students, by Students</span>
@@ -158,13 +157,15 @@
             </div>
         </div>
 
+        <!-- Hero image -->
         <div
-            class="absolute left-1/2 transform -translate-x-1/2 mt-12 z-30 w-[22rem] xs:w-[25rem] sm:w-[35rem] md:w-[45rem] lg:w-[60rem] pointer-events-none">
-            <img src="{{ asset('img/landingpage/hero.jpg') }}" alt="Hero Image"
+            class="absolute left-1/2 -translate-x-1/2 mt-12 z-30
+         w-[22rem] xs:w-[25rem] sm:w-[35rem] md:w-[45rem] lg:w-[60rem] pointer-events-none">
+            <img data-aos="fade" data-aos-delay="600" data-aos-anchor="#hero" data-aos-anchor-placement="top-bottom"
+                src="{{ asset('img/landingpage/hero.jpg') }}" alt="Hero Image"
                 class="w-full rounded-xl object-cover shadow-hero-green">
         </div>
     </section>
-
 
     {{-- Articles Marquee --}}
     <section class="relative pb-[4rem] pt-[2rem] bg-center bg-repeat bg-[length:100%_auto]"
@@ -172,25 +173,27 @@
         <div class="absolute inset-0 bg-white/70"></div>
 
         <div class="relative z-10">
-            <h2 class="text-[2.3rem] font-bold text-center mb-4">
+            <!-- Title -->
+            <h2 data-aos="fade" data-aos-delay="0" class="text-[2.3rem] font-bold text-center mb-4">
                 <span class="text-green-800">Explore</span>
-                <span
-                    class="bg-gradient-to-l from-green-900 to-green-400 bg-clip-text text-transparent">Arti</span><span
-                    class="text-green-800">cles</span>
-
+                <span class="bg-gradient-to-l from-green-900 to-green-400 bg-clip-text text-transparent">Arti</span>
+                <span class="text-green-800">cles</span>
             </h2>
 
-            <p class="text-[1.1rem] font-[600] text-green-800 text-center max-w-[50rem] mx-auto mb-[2rem]">
+            <!-- Subtitle -->
+            <p data-aos="fade" data-aos-delay="100"
+                class="text-[1.1rem] font-[600] text-green-800 text-center max-w-[50rem] mx-auto mb-[2rem]">
                 Discover insightful articles, tips, and resources curated to help you grow and stay informed.
             </p>
 
-            <div class="relative w-full overflow-x-hidden py-4">
+            <!-- Marquee Container -->
+            <div class="relative w-full overflow-x-hidden py-4" data-aos="fade" data-aos-delay="200">
                 <div x-data x-init="$nextTick(() => { $refs.content.appendChild($refs.cards.cloneNode(true)) })" class="flex animate-marquee gap-8">
                     <div x-ref="content" class="flex gap-8">
                         <div x-ref="cards" class="flex gap-8">
                             @foreach ($articles as $article)
-                                <div
-                                    class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 ease-out hover:border-2 hover:border-green-300 w-80 flex-shrink-0">
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 ease-out hover:border-2 hover:border-green-300 w-80 flex-shrink-0"
+                                    data-aos="fade" data-aos-delay="{{ $loop->index * 100 }}">
                                     <div class="h-48 w-full relative overflow-hidden group">
                                         @php
                                             $imgPath =
@@ -218,8 +221,10 @@
 
                                     <div class="p-6">
                                         <h3 class="text-md font-semibold text-gray-900 mb-2 line-clamp-1">
-                                            {{ $article->title }}</h3>
-                                        <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $article->description }}
+                                            {{ $article->title }}
+                                        </h3>
+                                        <p class="text-sm text-gray-600 mb-4 line-clamp-3">
+                                            {{ $article->description }}
                                         </p>
                                     </div>
                                 </div>
@@ -229,7 +234,8 @@
                 </div>
             </div>
 
-            <div class="mt-4 text-center">
+            <!-- Button -->
+            <div class="mt-4 text-center" data-aos="fade" data-aos-delay="400">
                 <x-button text="More Articles" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -243,30 +249,31 @@
         </div>
     </section>
 
+
     {{-- Announcement Marquee --}}
     <section class="relative pb-[8rem] pt-[2rem] bg-center bg-repeat bg-[length:100%_auto]"
         style="background-image: url('{{ asset('img/landingpage/bg-default-1.png') }}');">
         <div class="absolute inset-0 bg-white/70"></div>
 
         <div class="relative z-10">
-            <h2 class="text-[2.3rem] font-bold text-center mb-4">
+            <h2 data-aos="fade" data-aos-delay="0" class="text-[2.3rem] font-bold text-center mb-4">
                 <span class="text-green-800">News</span>
                 <span class="bg-gradient-to-r from-green-900 to-green-400 bg-clip-text text-transparent"> and </span>
                 <span class="text-green-800">Updates</span>
             </h2>
 
-
-            <p class="text-[1.1rem] font-[600] text-green-800 text-center max-w-[55rem] mx-auto mb-[2rem]">
+            <p data-aos="fade" data-aos-delay="100"
+                class="text-[1.1rem] font-[600] text-green-800 text-center max-w-[55rem] mx-auto mb-[2rem]">
                 Stay up-to-date with the latest announcements, updates, and important information from SafeSupport.
             </p>
 
-            <div class="relative w-full overflow-x-hidden py-4">
+            <div class="relative w-full overflow-x-hidden py-4" data-aos="fade" data-aos-delay="200">
                 <div x-data x-init="$nextTick(() => { $refs.content.appendChild($refs.cards.cloneNode(true)) })" class="flex animate-marquee-announcement gap-8">
                     <div x-ref="content" class="flex gap-8">
                         <div x-ref="cards" class="flex gap-8">
                             @foreach ($articles as $article)
-                                <div
-                                    class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 ease-out hover:border-2 hover:border-green-300 w-80 flex-shrink-0">
+                                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 ease-out hover:border-2 hover:border-green-300 w-80 flex-shrink-0"
+                                    data-aos="fade" data-aos-delay="{{ $loop->index * 100 + 250 }}">
                                     <div class="h-48 w-full relative overflow-hidden group">
                                         @php
                                             $imgPath =
@@ -295,7 +302,8 @@
                                     <div class="p-6">
                                         <h3 class="text-md font-semibold text-gray-900 mb-2 line-clamp-1">
                                             {{ $article->title }}</h3>
-                                        <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $article->description }}
+                                        <p class="text-sm text-gray-600 mb-4 line-clamp-3">
+                                            {{ $article->description }}
                                         </p>
                                     </div>
                                 </div>
@@ -307,13 +315,15 @@
         </div>
     </section>
 
+
     <section class="py-16 relative bg-center bg-repeat bg-[length:100%_auto]"
         style="background-image: url('{{ asset('img/landingpage/bg-default-1.png') }}');">
         <div class="absolute inset-0 bg-white/70"></div>
 
         <div class="relative mx-auto max-w-6xl px-6 z-10">
             <div class="mb-12 grid gap-8 lg:grid-cols-[1fr,auto]">
-                <div class="max-w-2xl">
+                <div data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-out-cubic"
+                    class="max-w-2xl">
                     <h2 class="mb-4 text-xl font-bold md:text-4xl text-green-800">
                         Your mental wellness journey<br>starts here
                     </h2>
@@ -325,7 +335,8 @@
                     </p>
                 </div>
 
-                <div class="flex flex-col gap-2 step-fill-wrapper">
+                <div data-aos="fade-left" data-aos-duration="1500" data-aos-easing="ease-out-cubic"
+                    class="flex flex-col gap-2 step-fill-wrapper">
                     <div class="flex gap-4">
                         <div class="relative flex flex-col items-center">
                             <div
@@ -393,7 +404,8 @@
                 </div>
 
             </div>
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12">
+            <div data-aos="flip-down" data-aos-duration="1500" data-aos-easing="ease-out-cubic"
+                class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12">
                 <div
                     class="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:shadow-lg">
                     <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-green-100">
@@ -509,7 +521,7 @@
         <p class="font-semibold text-center text-green-700 relative">Platform build by students, for students</p>
 
         <div class="flex justify-center z-10">
-            <div
+            <div data-aos="zoom-in-up" data-aos-duration="1000" data-aos-easing="ease-out-cubic"
                 class="relative w-[20rem] xs:w-[25rem] sm:w-[30rem] md:w-[45rem] lg:w-[60rem]
                        py-[2rem] xs:py-[2rem] sm:py-[3rem] md:py-[3rem] lg:py-[4rem]
                        bg-gradient-to-br from-[#2d6a4f] to-[#40916c]

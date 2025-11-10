@@ -33,7 +33,7 @@ class AuthController extends Controller
             $user = Auth::user();
 
             if ($user->role === 'student') {
-                return redirect()->route('student.dashboard');
+                return redirect()->route('student.about');
             } elseif ($user->role === 'counselor') {
                 return redirect()->route('counselor.dashboard');
             } else {

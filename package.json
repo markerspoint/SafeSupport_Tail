@@ -20,8 +20,9 @@
         "@fullcalendar/interaction": "^6.1.15",
         "@fullcalendar/timegrid": "^6.1.15",
         "alpinejs": "^3.15.0",
+        "aos": "^2.3.4",
         "chart.js": "^4.5.0",
-        "flowbite": "^2.5.2",
+        "flowbite": "^3.1.2",
         "simple-datatables": "^9.0.3"
     }
 }
